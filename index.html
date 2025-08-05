@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoNoctis Glasgow - Protecting Bats from Light Pollution</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-moon"></i>
+                <span>EcoNoctis Glasgow</span>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="problem-solution.html" class="nav-link">Problem & Solution</a>
+                <a href="design-journey.html" class="nav-link">Design Journey</a>
+                <a href="prototype.html" class="nav-link">Prototype</a>
+                <a href="weekly-journal.html" class="nav-link">Weekly Journal</a>
+                <a href="reflections.html" class="nav-link">Reflections</a>
+                <a href="about-team.html" class="nav-link">About Team</a>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>EcoNoctis Glasgow</h1>
+                <p class="hero-subtitle">Protecting Glasgow's bats from light pollution through smart analytics and community engagement</p>
+                <div class="hero-buttons">
+                    <a href="prototype.html" class="btn btn-primary">View Dashboard</a>
+                    <a href="problem-solution.html" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="dashboard-preview">
+                    <div class="preview-header">
+                        <div class="preview-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <span class="preview-title">EcoNoctis Dashboard</span>
+                    </div>
+                    <div class="preview-content">
+                        <div class="chart-placeholder">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Real-time Bat Analytics</span>
+                        </div>
+                        <div class="metrics-grid">
+                            <div class="metric">
+                                <i class="fas fa-moon"></i>
+                                <span>Light Levels</span>
+                            </div>
+                            <div class="metric">
+                                <i class="fas fa-route"></i>
+                                <span>Flight Paths</span>
+                            </div>
+                            <div class="metric">
+                                <i class="fas fa-heart"></i>
+                                <span>Adopt-a-Bat</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Overview -->
+    <section class="overview">
+        <div class="container">
+            <h2 class="animate-on-scroll">Project Overview</h2>
+            <p class="overview-text animate-on-scroll">
+                Our innovative dashboard helps Glasgow City Council and the community monitor and reduce light pollution 
+                affecting bat populations in local parks. Through sensor networks and data visualization, we're making 
+                bat conservation accessible and actionable.
+            </p>
+            
+            <div class="features-grid">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-area"></i>
+                    </div>
+                    <h3>Real-time Monitoring</h3>
+                    <p>Track light pollution levels and bat activity patterns across Glasgow's parks</p>
+                </div>
+                
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community Engagement</h3>
+                    <p>Adopt-a-bat program connecting citizens with conservation efforts</p>
+                </div>
+                
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Smart Solutions</h3>
+                    <p>Data-driven recommendations for lighting policies and park management</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="quick-links">
+        <div class="container">
+            <h2 class="animate-on-scroll">Explore Our Work</h2>
+            <div class="links-grid">
+                <a href="problem-solution.html" class="link-card animate-on-scroll">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>The Problem</h3>
+                    <p>Understanding light pollution's impact on Glasgow's bat populations</p>
+                </a>
+                
+                <a href="design-journey.html" class="link-card animate-on-scroll">
+                    <i class="fas fa-pencil-ruler"></i>
+                    <h3>Design Process</h3>
+                    <p>From sketches to prototypes - our iterative design journey</p>
+                </a>
+                
+                <a href="prototype.html" class="link-card animate-on-scroll">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Live Prototype</h3>
+                    <p>Experience our interactive dashboard and analytics platform</p>
+                </a>
+                
+                <a href="weekly-journal.html" class="link-card animate-on-scroll">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Weekly Progress</h3>
+                    <p>Follow our development journey week by week</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>EcoNoctis Glasgow</h4>
+                    <p>An OIP project dedicated to protecting Glasgow's bat populations through innovative technology and community engagement.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="problem-solution.html">Problem & Solution</a></li>
+                        <li><a href="prototype.html">Live Dashboard</a></li>
+                        <li><a href="reflections.html">Project Reflections</a></li>
+                        <li><a href="about-team.html">Meet the Team</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Project Info</h4>
+                    <ul>
+                        <li>Singapore Institute of Technology</li>
+                        <li>Organisational Innovation Project</li>
+                        <li>Year 2, Term 3 - 2025</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 EcoNoctis Glasgow Team. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/threejs-animations.js"></script>
+</body>
+</html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflections - EcoNoctis Glasgow</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-moon"></i>
+                <span>EcoNoctis Glasgow</span>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="problem-solution.html" class="nav-link">Problem & Solution</a>
+                <a href="design-journey.html" class="nav-link">Design Journey</a>
+                <a href="prototype.html" class="nav-link">Prototype</a>
+                <a href="weekly-journal.html" class="nav-link">Weekly Journal</a>
+                <a href="reflections.html" class="nav-link active">Reflections</a>
+                <a href="about-team.html" class="nav-link">About Team</a>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Project Reflections</h1>
+            <p>Honest insights into our learning journey, challenges overcome, and lessons for future projects</p>
+        </div>
+    </section>
+
+    <!-- Partner Interactions -->
+    <section class="partner-interactions">
+        <div class="container">
+            <h2>Interactions with Partners & Stakeholders</h2>
+            
+            <div class="interaction-overview">
+                <p>
+                    Throughout our project, we engaged with multiple stakeholders who provided invaluable insights 
+                    that shaped our approach and final solution. These interactions were crucial in ensuring our 
+                    solution addressed real-world needs and constraints.
+                </p>
+            </div>
+
+            <div class="partner-sections">
+                <div class="partner-section">
+                    <h3>Glasgow City Council Environmental Team</h3>
+                    <div class="interaction-content">
+                        <h4>What We Learned:</h4>
+                        <ul>
+                            <li><strong>Policy Constraints:</strong> Understanding the bureaucratic process for implementing new monitoring systems and the need for evidence-based decision making</li>
+                            <li><strong>Budget Realities:</strong> Learning about tight municipal budgets and the importance of cost-effective solutions that provide clear ROI</li>
+                            <li><strong>Data Requirements:</strong> The council needs specific data formats and reporting mechanisms for compliance with environmental regulations</li>
+                            <li><strong>Long-term Sustainability:</strong> Solutions must be maintainable with existing staff and technical capabilities</li>
+                        </ul>
+                        
+                        <h4>Feedback That Changed Our Approach:</h4>
+                        <blockquote>
+                            "We love the real-time monitoring concept, but we need to ensure the data is actionable. 
+                            Can you show us exactly how this helps us make lighting policy decisions?"
+                            <cite>— Senior Environmental Officer (Week 3 interview)</cite>
+                        </blockquote>
+                        
+                        <p>
+                            This feedback led us to add specific policy recommendation features and clearer correlation 
+                            visualizations between light levels and bat activity.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="partner-section">
+                    <h3>Glasgow Bat Group & Conservation Experts</h3>
+                    <div class="interaction-content">
+                        <h4>What We Learned:</h4>
+                        <ul>
+                            <li><strong>Scientific Accuracy:</strong> The importance of using correct terminology and avoiding oversimplification of complex ecological relationships</li>
+                            <li><strong>Seasonal Variations:</strong> Bat behavior changes dramatically with seasons, breeding cycles, and weather patterns</li>
+                            <li><strong>Species Differences:</strong> Different bat species have varying sensitivity to light pollution and require different monitoring approaches</li>
+                            <li><strong>Community Education:</strong> Public engagement is crucial for long-term conservation success</li>
+                        </ul>
+                        
+                        <h4>Critical Feedback:</h4>
+                        <blockquote>
+                            "Your initial design focused too much on generic 'bat activity.' We need to distinguish between 
+                            species and understand feeding vs. commuting behavior patterns."
+                            <cite>— Lead Researcher, Glasgow Bat Group (Week 4 consultation)</cite>
+                        </blockquote>
+                        
+                        <p>
+                            This expert input led us to refine our data categorization and add species-specific tracking 
+                            to the adopt-a-bat program.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="partner-section">
+                    <h3>Community Representatives & Park Users</h3>
+                    <div class="interaction-content">
+                        <h4>What We Learned:</h4>
+                        <ul>
+                            <li><strong>Accessibility Needs:</strong> Many community members are not tech-savvy and need simple, intuitive interfaces</li>
+                            <li><strong>Personal Connection:</strong> People engage more when they can connect emotionally with individual animals</li>
+                            <li><strong>Educational Hunger:</strong> Strong interest in learning about local wildlife when information is presented accessibly</li>
+                            <li><strong>Practical Concerns:</strong> Questions about safety and park lighting for human users</li>
+                        </ul>
+                        
+                        <h4>Valuable Insights:</h4>
+                        <blockquote>
+                            "I had no idea bats lived in our local park! If I could follow a specific bat and see how 
+                            the lights affect it, that would make me care so much more about this issue."
+                            <cite>— Local Park User (Week 5 user testing)</cite>
+                        </blockquote>
+                        
+                        <p>
+                            This insight reinforced our decision to implement the adopt-a-bat feature as a core 
+                            engagement mechanism.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="partnership-outcomes">
+                <h3>Key Changes from Partner Feedback</h3>
+                <div class="changes-grid">
+                    <div class="change-item">
+                        <h4>Data Presentation</h4>
+                        <p>Added policy-focused views and actionable insights specifically for council decision-making</p>
+                    </div>
+                    <div class="change-item">
+                        <h4>Scientific Accuracy</h4>
+                        <p>Implemented species-specific tracking and more nuanced behavioral categorization</p>
+                    </div>
+                    <div class="change-item">
+                        <h4>Community Features</h4>
+                        <p>Enhanced the adopt-a-bat program with educational content and personal tracking</p>
+                    </div>
+                    <div class="change-item">
+                        <h4>Accessibility</h4>
+                        <p>Simplified language, added tooltips, and improved mobile experience</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Reflections -->
+    <section class="personal-reflections">
+        <div class="container">
+            <h2>Personal Reflection Essay</h2>
+            
+            <div class="reflection-content">
+                <h3>What I'm Proud Of</h3>
+                <p>
+                    Looking back on this eight-week journey, I'm most proud of how our team maintained a user-centered 
+                    approach throughout the entire development process. From the beginning, we committed to solving 
+                    a real problem for real people, and I believe we succeeded in creating something genuinely useful.
+                </p>
+                
+                <p>
+                    The technical implementation exceeded my expectations. Building a fully functional dashboard with 
+                    interactive charts, responsive design, and engaging user features taught me that ambitious projects 
+                    are achievable with proper planning and iterative development. The adopt-a-bat feature, in particular, 
+                    demonstrates how technology can create emotional connections that drive behavioral change.
+                </p>
+                
+                <p>
+                    I'm also proud of how we handled stakeholder feedback. Rather than seeing criticism as setbacks, 
+                    we embraced each piece of feedback as an opportunity to improve. The willingness to completely 
+                    redesign features based on user testing shows professional maturity and commitment to excellence.
+                </p>
+
+                <h3>What I'm Not Proud Of</h3>
+                <p>
+                    Our initial research phase was too narrow. We focused heavily on technical solutions without 
+                    adequately understanding the political and budgetary constraints facing our primary users. 
+                    This led to early concepts that, while technically impressive, weren't practically implementable 
+                    by Glasgow City Council with their current resources.
+                </p>
+                
+                <p>
+                    I also regret not involving accessibility experts earlier in the design process. While we made 
+                    accessibility improvements in later weeks, incorporating inclusive design principles from the 
+                    beginning would have resulted in a better product for all users. The late addition of accessibility 
+                    features felt reactive rather than intentional.
+                </p>
+                
+                <p>
+                    Time management was another area where we could have performed better. We spent too much time 
+                    in the early ideation phase exploring features that ultimately didn't make it into the final 
+                    product. A more structured approach to feature prioritization would have allowed us to spend 
+                    more time polishing the core functionality.
+                </p>
+
+                <h3>Key Challenges and How We Addressed Them</h3>
+                
+                <div class="challenge-section">
+                    <h4>Challenge 1: Balancing Simplicity with Scientific Accuracy</h4>
+                    <p>
+                        <strong>The Problem:</strong> Conservation experts wanted detailed, scientifically accurate data 
+                        presentation, while community users needed simple, accessible information. These seemed like 
+                        conflicting requirements.
+                    </p>
+                    <p>
+                        <strong>Our Solution:</strong> We implemented a layered information architecture with summary 
+                        views for casual users and detailed drill-down capabilities for experts. Tooltips and progressive 
+                        disclosure allowed us to maintain simplicity on the surface while providing depth when needed.
+                    </p>
+                    <p>
+                        <strong>Lesson Learned:</strong> Complex user requirements don't always require complex solutions. 
+                        Good UX design can accommodate different user needs within the same interface.
+                    </p>
+                </div>
+
+                <div class="challenge-section">
+                    <h4>Challenge 2: Creating Emotional Connection with Data</h4>
+                    <p>
+                        <strong>The Problem:</strong> Environmental data can feel abstract and impersonal. We needed 
+                        to make bat conservation feel personally relevant to community members who might never have 
+                        seen a bat.
+                    </p>
+                    <p>
+                        <strong>Our Solution:</strong> The adopt-a-bat program transforms abstract conservation data 
+                        into personal stories. By following individual bats and seeing how lighting affects their 
+                        specific behaviors, users develop emotional investment in conservation outcomes.
+                    </p>
+                    <p>
+                        <strong>Lesson Learned:</strong> Storytelling and personalization are powerful tools for 
+                        engaging users with complex social and environmental issues.
+                    </p>
+                </div>
+
+                <div class="challenge-section">
+                    <h4>Challenge 3: Technical Complexity vs. Performance</h4>
+                    <p>
+                        <strong>The Problem:</strong> Our initial dashboard designs included complex real-time 
+                        visualizations that caused performance issues, especially on mobile devices.
+                    </p>
+                    <p>
+                        <strong>Our Solution:</strong> We implemented progressive enhancement, starting with fast-loading 
+                        basic charts and adding interactivity for users with capable devices. We also optimized our 
+                        code and used efficient chart libraries.
+                    </p>
+                    <p>
+                        <strong>Lesson Learned:</strong> Performance is a feature. Slow applications frustrate users 
+                        regardless of how impressive the functionality might be.
+                    </p>
+                </div>
+
+                <h3>What I Would Do Differently</h3>
+                <p>
+                    If I could restart this project, I would begin with a much more structured stakeholder analysis. 
+                    Understanding the political, technical, and budgetary constraints of each stakeholder group should 
+                    have been our first step, not something we discovered during development.
+                </p>
+                
+                <p>
+                    I would also implement a more rigorous testing schedule from the beginning. While our final 
+                    user testing was valuable, earlier and more frequent testing would have prevented us from 
+                    pursuing design directions that ultimately didn't work for our users.
+                </p>
+                
+                <p>
+                    Technical architecture decisions should have been made more deliberately. We chose technologies 
+                    based on familiarity rather than optimal fit for the project requirements. A more thorough 
+                    technical evaluation might have led to better performance and easier maintenance.
+                </p>
+                
+                <p>
+                    Finally, I would have documented our design decisions better throughout the process. While our 
+                    weekly journal captures major milestones, we lost many valuable insights about why specific 
+                    design choices were made and rejected.
+                </p>
+
+                <h3>Impact and Future Potential</h3>
+                <p>
+                    While this project was developed as an academic exercise, the positive response from Glasgow 
+                    City Council suggests genuine potential for real-world implementation. The councilors we 
+                    interviewed expressed interest in piloting aspects of our solution, particularly the sensor 
+                    network and policy dashboard features.
+                </p>
+                
+                <p>
+                    More importantly, this project has changed how I think about the relationship between technology 
+                    and environmental conservation. Technology alone cannot solve environmental problems, but 
+                    well-designed digital tools can facilitate the human connections and behavioral changes that 
+                    drive real conservation outcomes.
+                </p>
+                
+                <p>
+                    The skills I've developed in user research, stakeholder management, and iterative design will 
+                    be valuable in any future project. Learning to balance competing requirements and make 
+                    evidence-based design decisions has prepared me for the complex challenges of professional 
+                    product development.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Insights -->
+    <section class="team-insights">
+        <div class="container">
+            <h2>Team Reflections</h2>
+            
+            <div class="team-quotes">
+                <div class="quote-card">
+                    <blockquote>
+                        "This project taught me that good design is as much about what you don't include as what you do. 
+                        Every feature we removed made the final product stronger and more focused."
+                    </blockquote>
+                    <cite>— UX Designer</cite>
+                </div>
+                
+                <div class="quote-card">
+                    <blockquote>
+                        "Working with real stakeholders was eye-opening. Academic projects often assume perfect 
+                        users, but real people have constraints, biases, and competing priorities that affect how 
+                        they use technology."
+                    </blockquote>
+                    <cite>— Frontend Developer</cite>
+                </div>
+                
+                <div class="quote-card">
+                    <blockquote>
+                        "The technical challenges were significant, but the collaboration challenges were even more 
+                        complex. Learning to give and receive feedback constructively was crucial for our success."
+                    </blockquote>
+                    <cite>— Data Analyst</cite>
+                </div>
+                
+                <div class="quote-card">
+                    <blockquote>
+                        "This project reinforced my belief that technology can be a powerful tool for conservation, 
+                        but only when it serves human needs and facilitates meaningful action."
+                    </blockquote>
+                    <cite>— Conservation Researcher</cite>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Implications -->
+    <section class="future-implications">
+        <div class="container">
+            <h2>Looking Forward</h2>
+            
+            <div class="implications-content">
+                <h3>Potential Real-World Impact</h3>
+                <p>
+                    Based on stakeholder feedback, there's genuine interest in implementing aspects of this solution 
+                    in Glasgow. The city council has indicated they would consider a pilot program if funding becomes 
+                    available, particularly for the sensor network component.
+                </p>
+                
+                <h3>Scalability Opportunities</h3>
+                <p>
+                    The principles and approach we developed could be adapted for other cities facing similar 
+                    wildlife conservation challenges. The modular design would allow implementation of individual 
+                    components (sensors, dashboard, community features) based on local needs and resources.
+                </p>
+                
+                <h3>Technical Evolution</h3>
+                <p>
+                    Future versions could incorporate machine learning for pattern recognition, IoT sensor integration 
+                    for real-time data collection, and mobile applications for field researchers. The foundation 
+                    we've built provides a strong platform for these enhancements.
+                </p>
+                
+                <h3>Lessons for Future Projects</h3>
+                <ul>
+                    <li>Start with stakeholder constraints, not technical possibilities</li>
+                    <li>Invest in user research early and often</li>
+                    <li>Design for performance and accessibility from the beginning</li>
+                    <li>Document decision-making processes for future reference</li>
+                    <li>Build in flexibility for evolving requirements</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>EcoNoctis Glasgow</h4>
+                    <p>An OIP project dedicated to protecting Glasgow's bat populations through innovative technology and community engagement.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="problem-solution.html">Problem & Solution</a></li>
+                        <li><a href="design-journey.html">Design Journey</a></li>
+                        <li><a href="about-team.html">Meet the Team</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Project Info</h4>
+                    <ul>
+                        <li>Singapore Institute of Technology</li>
+                        <li>Organisational Innovation Project</li>
+                        <li>Year 2, Term 3 - 2025</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 EcoNoctis Glasgow Team. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

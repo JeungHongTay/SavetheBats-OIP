@@ -1,0 +1,4 @@
+# Exclude GitHub-specific files and folders
+.github/
+# Specifically exclude copilot instructions
+.github/copilot-instructions.md
