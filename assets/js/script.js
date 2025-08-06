@@ -105,8 +105,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                // For elements with animate-on-scroll class, add animate class
+                if (entry.target.classList.contains('animate-on-scroll')) {
+                    entry.target.classList.add('animate');
+                } else {
+                    // For other elements, use direct style animation
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
                 
                 // Animate metric values (only if not already animated)
                 const metricValue = entry.target.querySelector('.metric-value');
@@ -123,11 +129,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
 
     // Observe elements for animation
-    const animatedElements = document.querySelectorAll('.metric-card, .feature-card, .solution-card, .member-card');
+    const animatedElements = document.querySelectorAll('.animate-on-scroll, .metric-card, .feature-card, .solution-card, .member-card, .link-card');
     animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        // Only set styles for elements that don't have animate-on-scroll class
+        if (!el.classList.contains('animate-on-scroll')) {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        }
         observer.observe(el);
     });
 });
@@ -378,7 +387,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Console Welcome Message
 // ===========================
 console.log(`
-🦇 EcoNoctis Glasgow Website
+🦇 EcoNoc Glasgow Website
 Built with HTML, CSS, and JavaScript
 Singapore Institute of Technology - OIP Project 2025
 

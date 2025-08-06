@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prototype - EcoNoctis Glasgow</title>
+    <title>Analytics Dashboard - EcoNoc Glasgow</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -14,13 +15,13 @@
         <div class="nav-container">
             <div class="nav-logo">
                 <i class="fas fa-moon"></i>
-                <span>EcoNoctis Glasgow</span>
+                <span>EcoNoc Glasgow</span>
             </div>
             <div class="nav-menu" id="navMenu">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="problem-solution.html" class="nav-link">Problem & Solution</a>
                 <a href="design-journey.html" class="nav-link">Design Journey</a>
-                <a href="prototype.html" class="nav-link active">Prototype</a>
+                <a href="prototype.html" class="nav-link active">Dashboard</a>
                 <a href="weekly-journal.html" class="nav-link">Weekly Journal</a>
                 <a href="reflections.html" class="nav-link">Reflections</a>
                 <a href="about-team.html" class="nav-link">About Team</a>
@@ -33,10 +34,264 @@
         </div>
     </nav>
 
-    <!-- Main Content Area - Blank for prototyping -->
-    <main class="prototype-content" style="min-height: 70vh; background-color: white; padding: 120px 0 2rem 0; margin-top: 0;">
+    <!-- Dashboard Header -->
+    <section class="dashboard-header">
         <div class="container">
-            <!-- Blank white space for prototype content -->
+            <h1>EcoNoc Analytics Dashboard</h1>
+            <p>Real-time monitoring of bat activity and light pollution across Glasgow parks</p>
+        </div>
+    </section>
+
+    <!-- Dashboard Navigation -->
+    <section class="dashboard-nav">
+        <div class="container">
+            <div class="dashboard-tabs">
+                <button class="tab-btn active" data-tab="overview">Overview</button>
+                <button class="tab-btn" data-tab="bat-monitoring">Bat Activity</button>
+                <button class="tab-btn" data-tab="light-tracking">Light Pollution</button>
+                <button class="tab-btn" data-tab="impact-analysis">Impact Analysis</button>
+                <button class="tab-btn" data-tab="thermal-imaging">Thermal Imaging</button>
+                <button class="tab-btn" data-tab="community">Adopt-a-Bat</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Content -->
+    <main class="dashboard-content">
+        <div class="container">
+            
+            <!-- Overview Tab -->
+            <div class="tab-content active" id="overview">
+                <div class="metrics-overview">
+                    <div class="metric-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Active Bats</h3>
+                        <span class="metric-value">247</span>
+                        <span class="metric-change positive">+12% from last week</span>
+                    </div>
+                    <div class="metric-card">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Avg Light Level</h3>
+                        <span class="metric-value">2.3 lux</span>
+                        <span class="metric-change negative">+15% from baseline</span>
+                    </div>
+                    <div class="metric-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Active Sensors</h3>
+                        <span class="metric-value">18/20</span>
+                        <span class="metric-change">Normal operation</span>
+                    </div>
+                    <div class="metric-card">
+                        <i class="fas fa-heart"></i>
+                        <h3>Adopted Bats</h3>
+                        <span class="metric-value">142</span>
+                        <span class="metric-change positive">+8 this week</span>
+                    </div>
+                </div>
+                
+                <div class="chart-grid">
+                    <div class="chart-container">
+                        <h3>Activity vs Light Correlation</h3>
+                        <canvas id="correlationChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Hourly Detection Patterns</h3>
+                        <canvas id="hourlyChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bat Activity Monitoring Tab -->
+            <div class="tab-content" id="bat-monitoring">
+                <div class="section-header">
+                    <h2>Bat Activity Monitoring</h2>
+                    <p>Real-time bat count, species detection, and activity patterns</p>
+                </div>
+                
+                <div class="species-grid">
+                    <div class="species-card">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA2MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTMwIDIwTDE1IDEwSDQ1TDMwIDIwWiIgZmlsbD0iIzMzMzMzMyIvPgo8L3N2Zz4K" alt="Common Pipistrelle">
+                        <h4>Common Pipistrelle</h4>
+                        <div class="species-stats">
+                            <span>Count: 89</span>
+                            <span>Activity: High</span>
+                        </div>
+                    </div>
+                    <div class="species-card">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA2MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTMwIDIwTDE1IDEwSDQ1TDMwIDIwWiIgZmlsbD0iIzMzMzMzMyIvPgo8L3N2Zz4K" alt="Soprano Pipistrelle">
+                        <h4>Soprano Pipistrelle</h4>
+                        <div class="species-stats">
+                            <span>Count: 64</span>
+                            <span>Activity: Medium</span>
+                        </div>
+                    </div>
+                    <div class="species-card">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA2MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTMwIDIwTDE1IDEwSDQ1TDMwIDIwWiIgZmlsbD0iIzMzMzMzMyIvPgo8L3N2Zz4K" alt="Daubenton's Bat">
+                        <h4>Daubenton's Bat</h4>
+                        <div class="species-stats">
+                            <span>Count: 32</span>
+                            <span>Activity: Low</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <h3>Monthly Activity Trends</h3>
+                    <canvas id="monthlyTrendsChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Light Pollution Tracking Tab -->
+            <div class="tab-content" id="light-tracking">
+                <div class="section-header">
+                    <h2>Light Pollution Tracking</h2>
+                    <p>Live light intensity readings and sensor network mapping</p>
+                </div>
+                
+                <div class="light-metrics">
+                    <div class="light-metric">
+                        <h4>Current Light Level</h4>
+                        <span class="light-value">2.3 lux</span>
+                        <div class="light-scale">
+                            <div class="light-indicator" style="left: 23%"></div>
+                        </div>
+                    </div>
+                    <div class="light-metric">
+                        <h4>SQM Reading</h4>
+                        <span class="light-value">18.5 mag/arcsec²</span>
+                        <span class="light-quality">Moderate pollution</span>
+                    </div>
+                </div>
+                
+                <div class="sensor-map">
+                    <h3>Sensor Network Status</h3>
+                    <div class="map-placeholder">
+                        <i class="fas fa-map"></i>
+                        <p>Interactive sensor map showing real-time light readings across Glasgow parks</p>
+                        <div class="sensor-legend">
+                            <span class="sensor-status active">Active (18)</span>
+                            <span class="sensor-status inactive">Inactive (2)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Impact Analysis Tab -->
+            <div class="tab-content" id="impact-analysis">
+                <div class="section-header">
+                    <h2>Impact Analysis</h2>
+                    <p>Correlation analysis and policy recommendations</p>
+                </div>
+                
+                <div class="impact-cards">
+                    <div class="impact-card">
+                        <h4>GlasGLOW Event Impact</h4>
+                        <div class="impact-stat">
+                            <span class="impact-value">-35%</span>
+                            <span>Bat activity reduction during event</span>
+                        </div>
+                    </div>
+                    <div class="impact-card">
+                        <h4>Species Sensitivity</h4>
+                        <div class="impact-stat">
+                            <span class="impact-value">High</span>
+                            <span>Daubenton's bats most affected</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="recommendations">
+                    <h3>Policy Recommendations</h3>
+                    <ul class="recommendation-list">
+                        <li>Implement amber LED lighting in sensitive areas</li>
+                        <li>Reduce lighting intensity by 30% during peak bat activity hours</li>
+                        <li>Create dark corridors connecting feeding areas</li>
+                        <li>Schedule maintenance lighting for daylight hours</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Thermal Imaging Tab -->
+            <div class="tab-content" id="thermal-imaging">
+                <div class="section-header">
+                    <h2>Thermal Imaging & Detection</h2>
+                    <p>Periodic thermal imaging analysis and acoustic frequency monitoring</p>
+                </div>
+                
+                <div class="tracking-grid">
+                    <div class="tracking-item">
+                        <h4>Recent Thermal Scan - Kelvingrove Park</h4>
+                        <div class="tracking-status">
+                            <span class="status-dot active"></span>
+                            <span>Scan completed - 23:45</span>
+                        </div>
+                        <div class="tracking-details">
+                            <span>Detected: 12 heat signatures</span>
+                            <span>Species identified: 3 types</span>
+                        </div>
+                    </div>
+                    <div class="tracking-item">
+                        <h4>Acoustic Monitoring - Pollok Park</h4>
+                        <div class="tracking-status">
+                            <span class="status-dot active"></span>
+                            <span>Recording active</span>
+                        </div>
+                        <div class="tracking-details">
+                            <span>Frequency range: 20-100 kHz</span>
+                            <span>Last detection: 5 min ago</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flight-map">
+                    <h3>Thermal Scan Coverage Areas</h3>
+                    <div class="map-placeholder">
+                        <i class="fas fa-thermometer-half"></i>
+                        <p>Thermal imaging coverage zones and acoustic monitoring points across Glasgow parks</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Community Engagement Tab -->
+            <div class="tab-content" id="community">
+                <div class="section-header">
+                    <h2>Adopt-a-Bat Program</h2>
+                    <p>Connect with individual bats and support conservation efforts</p>
+                </div>
+                
+                <div class="adopt-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-users"></i>
+                        <span>142 Active Adopters</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-heart"></i>
+                        <span>89 Bats Adopted</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-star"></i>
+                        <span>234 Community Points</span>
+                    </div>
+                </div>
+                
+                <div class="featured-bats">
+                    <h3>Featured Bats Available for Adoption</h3>
+                    <div class="bat-cards">
+                        <div class="bat-card">
+                            <div class="bat-avatar">🦇</div>
+                            <h4>"Whisper"</h4>
+                            <p>Common Pipistrelle - Kelvingrove Park</p>
+                            <button class="adopt-btn">Adopt This Bat</button>
+                        </div>
+                        <div class="bat-card">
+                            <div class="bat-avatar">🦇</div>
+                            <h4>"Shadow"</h4>
+                            <p>Soprano Pipistrelle - Pollok Park</p>
+                            <button class="adopt-btn">Adopt This Bat</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -45,8 +300,17 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>EcoNoctis Glasgow</h4>
-                    <p>An OIP project dedicated to protecting Glasgow's bat populations through innovative technology and community engagement.</p>
+                    <h4>EcoNoc Glasgow</h4>
+                    <p>Comprehensive analytics dashboard for monitoring bat activity and light pollution impact in Glasgow parks.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Dashboard Features</h4>
+                    <ul>
+                        <li><a href="#bat-monitoring">Bat Activity Monitoring</a></li>
+                        <li><a href="#light-tracking">Light Pollution Tracking</a></li>
+                        <li><a href="#impact-analysis">Impact Analysis</a></li>
+                        <li><a href="#thermal-imaging">Thermal Imaging</a></li>
+                    </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Quick Links</h4>
@@ -67,11 +331,12 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 EcoNoctis Glasgow Team. All rights reserved.</p>
+                <p>&copy; 2025 EcoNoc Glasgow Team. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/dashboard.js"></script>
 </body>
 </html>

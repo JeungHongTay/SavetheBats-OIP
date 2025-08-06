@@ -1,42 +1,78 @@
 // ===========================
-// Dashboard-Specific JavaScript
-// Interactive Charts and Data Visualization
+// Analytics Dashboard JavaScript
+// Comprehensive Bat Monitoring & Light Pollution Analytics
 // ===========================
 
 document.addEventListener('DOMContentLoaded', function() {
+    initializeDashboard();
     initializeCharts();
     updateMetrics();
     setupInteractivity();
 });
 
 // ===========================
+// Dashboard Initialization
+// ===========================
+function initializeDashboard() {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetTab = btn.getAttribute('data-tab');
+            switchTab(targetTab);
+        });
+    });
+}
+
+function switchTab(targetTab) {
+    // Remove active class from all tabs and contents
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+    
+    // Add active class to selected tab and content
+    document.querySelector(`[data-tab="${targetTab}"]`).classList.add('active');
+    document.getElementById(targetTab).classList.add('active');
+    
+    // Refresh charts when switching tabs
+    setTimeout(() => {
+        if (targetTab === 'overview') {
+            initializeOverviewCharts();
+        } else if (targetTab === 'bat-monitoring') {
+            initializeMonitoringCharts();
+        } else if (targetTab === 'thermal-imaging') {
+            // Setup thermal imaging specific functionality if needed
+        }
+    }, 100);
+}
+
+// ===========================
+// Chart Variables
+// ===========================
+let correlationChart, hourlyChart, monthlyTrendsChart;
+
+// ===========================
 // Chart Initialization
 // ===========================
-let activityChart, hourlyChart;
-
 function initializeCharts() {
-    // Destroy existing charts if they exist
-    if (activityChart) {
-        activityChart.destroy();
-    }
-    if (hourlyChart) {
-        hourlyChart.destroy();
-    }
+    initializeOverviewCharts();
+}
 
-    // Initialize the activity vs light pollution correlation chart
-    const activityCtx = document.getElementById('activityChart');
-    if (activityCtx) {
-        activityChart = new Chart(activityCtx, {
+function initializeOverviewCharts() {
+    // Correlation Chart
+    const correlationCtx = document.getElementById('correlationChart');
+    if (correlationCtx) {
+        if (correlationChart) correlationChart.destroy();
+        correlationChart = new Chart(correlationCtx, {
             type: 'scatter',
             data: {
                 datasets: [{
                     label: 'Bat Activity vs Light Level',
-                    data: generateActivityData(),
+                    data: generateCorrelationData(),
                     backgroundColor: 'rgba(59, 130, 246, 0.6)',
                     borderColor: 'rgba(59, 130, 246, 1)',
                     borderWidth: 2,
-                    pointRadius: 6,
-                    pointHoverRadius: 8
+                    pointRadius: 5,
+                    pointHoverRadius: 7
                 }]
             },
             options: {
@@ -46,8 +82,105 @@ function initializeCharts() {
                     legend: {
                         display: true,
                         position: 'top'
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Light Level (lux)'
+                        },
+                        beginAtZero: true
                     },
-                    tooltip: {
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Bat Detections (per hour)'
+                        },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+    // Hourly Pattern Chart
+    const hourlyCtx = document.getElementById('hourlyChart');
+    if (hourlyCtx) {
+        if (hourlyChart) hourlyChart.destroy();
+        hourlyChart = new Chart(hourlyCtx, {
+            type: 'line',
+            data: {
+                labels: generateHourLabels(),
+                datasets: [{
+                    label: 'Bat Activity',
+                    data: generateHourlyData(),
+                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                    borderColor: 'rgba(16, 185, 129, 1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Hour of Night'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Detection Count'
+                        },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+}
+
+// ===========================
+// Data Generation Functions
+// ===========================
+function generateCorrelationData() {
+    const data = [];
+    for (let i = 0; i < 25; i++) {
+        const light = Math.random() * 5;
+        const activity = Math.max(0, 50 - (light * 8) + (Math.random() * 15));
+        data.push({x: light.toFixed(1), y: Math.round(activity)});
+    }
+    return data;
+}
+
+function generateHourLabels() {
+    return ['8PM', '9PM', '10PM', '11PM', '12AM', '1AM', '2AM', '3AM', '4AM', '5AM', '6AM'];
+}
+
+function generateHourlyData() {
+    return [5, 12, 28, 45, 52, 48, 35, 22, 8, 3, 1];
+}
+
+// ===========================
+// Interactive Features
+// ===========================
+function updateMetrics() {
+    // Simulate real-time updates
+}
+
+function setupInteractivity() {
+    // Setup dashboard interactions
+}
                         backgroundColor: 'rgba(0, 0, 0, 0.8)',
                         titleColor: 'white',
                         bodyColor: 'white',
@@ -83,43 +216,29 @@ function initializeCharts() {
                     }
                 },
                 animation: {
-                    duration: 2000,
+                    duration: 1500,
                     easing: 'easeInOutQuart'
                 }
             }
         });
-
-        // Add click handler for data points
-        activityCtx.onclick = function(evt) {
-            const points = activityChart.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, true);
-            if (points.length) {
-                const firstPoint = points[0];
-                const dataIndex = firstPoint.index;
-                showDataPointDetails(dataIndex, 'activity');
-            }
-        };
     }
 
-    // Initialize the hourly detection pattern chart
+    // Hourly Pattern Chart
     const hourlyCtx = document.getElementById('hourlyChart');
     if (hourlyCtx) {
+        if (hourlyChart) hourlyChart.destroy();
         hourlyChart = new Chart(hourlyCtx, {
             type: 'line',
             data: {
                 labels: generateHourLabels(),
                 datasets: [{
-                    label: 'Bat Detections',
+                    label: 'Bat Activity',
                     data: generateHourlyData(),
                     backgroundColor: 'rgba(16, 185, 129, 0.1)',
                     borderColor: 'rgba(16, 185, 129, 1)',
                     borderWidth: 3,
                     fill: true,
-                    tension: 0.4,
-                    pointBackgroundColor: 'rgba(16, 185, 129, 1)',
-                    pointBorderColor: 'white',
-                    pointBorderWidth: 2,
-                    pointRadius: 5,
-                    pointHoverRadius: 8
+                    tension: 0.4
                 }]
             },
             options: {
@@ -127,6 +246,115 @@ function initializeCharts() {
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Hour of Night'
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Detection Count'
+                        },
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        }
+                    }
+                },
+                animation: {
+                    duration: 1500,
+                    easing: 'easeInOutQuart'
+                }
+            }
+        });
+    }
+}
+
+function initializeMonitoringCharts() {
+    // Monthly Trends Chart
+    const monthlyCtx = document.getElementById('monthlyTrendsChart');
+    if (monthlyCtx) {
+        if (monthlyTrendsChart) monthlyTrendsChart.destroy();
+        monthlyTrendsChart = new Chart(monthlyCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [
+                    {
+                        label: 'Common Pipistrelle',
+                        data: [45, 52, 68, 89, 75, 62],
+                        backgroundColor: 'rgba(59, 130, 246, 0.7)'
+                    },
+                    {
+                        label: 'Soprano Pipistrelle',
+                        data: [32, 38, 45, 64, 58, 48],
+                        backgroundColor: 'rgba(16, 185, 129, 0.7)'
+                    },
+                    {
+                        label: "Daubenton's Bat",
+                        data: [18, 22, 28, 32, 29, 25],
+                        backgroundColor: 'rgba(251, 191, 36, 0.7)'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Month'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Average Detections per Night'
+                        },
+                        beginAtZero: true
+// ===========================
+// Data Generation Functions
+// ===========================
+function generateCorrelationData() {
+    const data = [];
+    for (let i = 0; i < 25; i++) {
+        const light = Math.random() * 5; // 0-5 lux
+        const activity = Math.max(0, 50 - (light * 8) + (Math.random() * 15)); // Inverse correlation with noise
+        data.push({x: light.toFixed(1), y: Math.round(activity)});
+    }
+    return data;
+}
+
+function generateHourLabels() {
+    return ['8PM', '9PM', '10PM', '11PM', '12AM', '1AM', '2AM', '3AM', '4AM', '5AM', '6AM'];
+}
+
+function generateHourlyData() {
+    return [5, 12, 28, 45, 52, 48, 35, 22, 8, 3, 1]; // Peak activity around midnight
+}
+
+// ===========================
+// Tab Navigation
+// ===========================
+function setupTabNavigation() {
+    // Already handled in initializeDashboard
+}
                         display: true,
                         position: 'top'
                     },

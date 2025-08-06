@@ -1,5 +1,5 @@
 /**
- * Three.js Animations for EcoNoctis Glasgow Website
+ * Three.js Animations for EcoNoc Glasgow Website
  * Creates an animated particle system representing bats flying in the night sky
  */
 
@@ -18,7 +18,7 @@ function initHeroAnimation() {
 
     // Create particle system for stars (keeping some blue stars for night sky)
     const starGeometry = new THREE.BufferGeometry();
-    const starCount = 100;
+    const starCount =100;
     const starPositions = new Float32Array(starCount * 3);
     const starVelocities = new Float32Array(starCount * 3);
 
@@ -61,31 +61,31 @@ function initHeroAnimation() {
         fireflyVelocities[i3 + 1] = (Math.random() - 0.5) * 0.015;
         fireflyVelocities[i3 + 2] = (Math.random() - 0.5) * 0.02;
         
-        // Much bigger sizes for maximum visibility
-        fireflySizes[i] = Math.random() * 0.2 + 0.12; // Increased from 0.08-0.23 to 0.12-0.32
+        // MASSIVE sizes for ultra-visibility
+        fireflySizes[i] = Math.random() * 0.35 + 0.25; // Much bigger: 0.25-0.60 (doubled from before)
         
-        // Ultra-vibrant, high-contrast colors - even brighter
+        // ULTRA-BRIGHT, maximum contrast colors - extremely vibrant
         const colorVariation = Math.random();
-        if (colorVariation < 0.35) {
-            // Electric bright yellow - pure and intense
-            fireflyColors[i3] = 1.0;     // R
-            fireflyColors[i3 + 1] = 1.0; // G
-            fireflyColors[i3 + 2] = 0.0; // B
-        } else if (colorVariation < 0.65) {
-            // Blazing orange - super vibrant
-            fireflyColors[i3] = 1.0;     // R
-            fireflyColors[i3 + 1] = 0.2; // G (even less green for more contrast)
-            fireflyColors[i3 + 2] = 0.0; // B
-        } else if (colorVariation < 0.85) {
-            // Pure gold - bright and shimmering
-            fireflyColors[i3] = 1.0;     // R
-            fireflyColors[i3 + 1] = 0.8; // G
-            fireflyColors[i3 + 2] = 0.0; // B
+        if (colorVariation < 0.4) {
+            // BLAZING ELECTRIC YELLOW - maximum intensity
+            fireflyColors[i3] = 1.0;     // R - full red
+            fireflyColors[i3 + 1] = 1.0; // G - full green  
+            fireflyColors[i3 + 2] = 0.0; // B - zero blue for pure yellow
+        } else if (colorVariation < 0.75) {
+            // INTENSE BURNING ORANGE - super hot orange
+            fireflyColors[i3] = 1.0;     // R - full red
+            fireflyColors[i3 + 1] = 0.4; // G - more green for better orange visibility
+            fireflyColors[i3 + 2] = 0.0; // B - zero blue
+        } else if (colorVariation < 0.9) {
+            // BRILLIANT GOLD - maximum shimmer effect
+            fireflyColors[i3] = 1.0;     // R - full red
+            fireflyColors[i3 + 1] = 0.9; // G - almost full green for bright gold
+            fireflyColors[i3 + 2] = 0.0; // B - zero blue
         } else {
-            // Add some bright white fireflies for variety
-            fireflyColors[i3] = 1.0;     // R
-            fireflyColors[i3 + 1] = 1.0; // G
-            fireflyColors[i3 + 2] = 1.0; // B - pure white for maximum visibility
+            // PURE BLAZING WHITE - maximum visibility
+            fireflyColors[i3] = 1.0;     // R - full
+            fireflyColors[i3 + 1] = 1.0; // G - full
+            fireflyColors[i3 + 2] = 1.0; // B - full white for contrast
         }
     }
 
@@ -104,12 +104,12 @@ function initHeroAnimation() {
             
             void main() {
                 vColor = color;
-                // Stronger pulsing effect for more visibility
-                vOpacity = 1.0 + 0.5 * sin(position.x * 6.0 + position.y * 6.0);
+                // EXTREME pulsing effect for maximum visibility
+                vOpacity = 1.2 + 0.8 * sin(position.x * 8.0 + position.y * 8.0);
                 
                 vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-                // Even bigger point size for maximum visibility
-                gl_PointSize = size * (500.0 / -mvPosition.z);
+                // MASSIVE point size for ultra-visibility
+                gl_PointSize = size * (650.0 / -mvPosition.z);
                 gl_Position = projectionMatrix * mvPosition;
             }
         `,
@@ -121,17 +121,22 @@ function initHeroAnimation() {
                 vec2 center = gl_PointCoord - vec2(0.5);
                 float dist = length(center);
                 
-                // Create super bright circular shape with intense glow
+                // Create ULTRA-bright glowing orb
                 float alpha = 1.0 - smoothstep(0.0, 0.5, dist);
                 alpha *= vOpacity;
                 
-                // Multiple glow layers for maximum impact
-                float innerCore = 1.0 - smoothstep(0.0, 0.1, dist);  // Bright core
-                float innerGlow = 1.0 - smoothstep(0.0, 0.25, dist); // Inner glow
-                float outerGlow = 1.0 - smoothstep(0.0, 0.45, dist); // Outer glow
+                // EXTREME glow layers for maximum impact
+                float blazingCore = 1.0 - smoothstep(0.0, 0.08, dist);  // Ultra-bright core
+                float innerFire = 1.0 - smoothstep(0.0, 0.2, dist);    // Inner fire
+                float middleGlow = 1.0 - smoothstep(0.0, 0.35, dist);  // Middle glow
+                float outerAura = 1.0 - smoothstep(0.0, 0.48, dist);   // Outer aura
                 
-                // Ultra-boost the color intensity for maximum visibility
-                vec3 finalColor = vColor * 2.0 + innerCore * vColor * 1.5 + innerGlow * vColor * 1.0 + outerGlow * 0.5;
+                // MAXIMUM color intensity boost - nuclear bright!
+                vec3 finalColor = vColor * 3.0 + 
+                                blazingCore * vColor * 2.5 + 
+                                innerFire * vColor * 1.8 + 
+                                middleGlow * vColor * 1.2 + 
+                                outerAura * 0.8;
                 
                 gl_FragColor = vec4(finalColor, alpha);
             }
@@ -141,17 +146,17 @@ function initHeroAnimation() {
     const fireflies = new THREE.Points(fireflyGeometry, fireflyMaterial);
     scene.add(fireflies);
 
-    // Ambient lighting - brighter for better visibility
-    const ambientLight = new THREE.AmbientLight(0x2a2a3a, 0.5);
+    // ULTRA-bright lighting for maximum firefly visibility
+    const ambientLight = new THREE.AmbientLight(0x2a2a3a, 0.7); // Brighter ambient
     scene.add(ambientLight);
 
-    // Brighter warm point light for firefly ambiance
-    const warmLight = new THREE.PointLight(0xFFD700, 1.2, 100); // Gold color, higher intensity
+    // BLAZING warm golden light - much brighter
+    const warmLight = new THREE.PointLight(0xFFD700, 2.0, 120); // Doubled intensity, increased range
     warmLight.position.set(0, 0, 5);
     scene.add(warmLight);
 
-    // Brighter soft orange light  
-    const orangeLight = new THREE.PointLight(0xFF6600, 0.8, 50); // Brighter orange
+    // INTENSE burning orange light - super bright  
+    const orangeLight = new THREE.PointLight(0xFF4400, 1.5, 80); // Much brighter orange, wider range
     orangeLight.position.set(-5, 3, 2);
     scene.add(orangeLight);
 
@@ -216,13 +221,13 @@ function initHeroAnimation() {
         camera.position.y = mouseY * 0.3;
         camera.lookAt(scene.position);
 
-        // Gentle pulsing warm light effect
-        warmLight.intensity = 0.6 + Math.sin(time * 0.8) * 0.2;
-        orangeLight.intensity = 0.3 + Math.cos(time * 1.2) * 0.1;
+        // INTENSE pulsing light effects - much more dramatic
+        warmLight.intensity = 1.8 + Math.sin(time * 1.2) * 0.4; // Stronger pulsing
+        orangeLight.intensity = 1.2 + Math.cos(time * 1.6) * 0.3; // More dynamic orange
 
-        // Subtle rotation of lights
-        warmLight.position.x = Math.sin(time * 0.2) * 2;
-        warmLight.position.y = Math.cos(time * 0.15) * 1;
+        // More dramatic light movement
+        warmLight.position.x = Math.sin(time * 0.3) * 3;
+        warmLight.position.y = Math.cos(time * 0.2) * 1.5;
 
         renderer.render(scene, camera);
     }

@@ -1,6 +1,6 @@
-# EcoNoctis Glasgow Website
+# EcoNoc Glasgow Website
 
-A website for the EcoNoctis Glasgow project - addressing light pollution effects on bat populations in Glasgow parks.
+A website for the EcoNoc Glasgow project - addressing light pollution effects on bat populations in Glasgow parks.
 
 ## Project Overview
 
