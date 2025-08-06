@@ -251,40 +251,108 @@ function initHeroAnimation() {
     };
 }
 
-// Initialize scroll-based animations
+// Initialize enhanced scroll-based animations
 function initScrollAnimations() {
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.15,
+        rootMargin: '0px 0px -80px 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animate');
+                
+                // Add specific animation classes based on element type
+                if (entry.target.classList.contains('feature-card')) {
+                    entry.target.style.animation = `fadeInUp 0.8s ease-out forwards`;
+                } else if (entry.target.classList.contains('solution-card')) {
+                    entry.target.style.animation = `scaleIn 0.8s ease-out forwards`;
+                } else if (entry.target.classList.contains('link-card')) {
+                    entry.target.style.animation = `fadeInRight 0.8s ease-out forwards`;
+                } else if (entry.target.tagName === 'H2') {
+                    entry.target.style.animation = `slideDown 0.6s ease-out forwards`;
+                } else {
+                    entry.target.style.animation = `fadeInUp 0.8s ease-out forwards`;
+                }
             }
         });
     }, observerOptions);
 
-    // Observe elements for scroll animations
-    document.querySelectorAll('.feature-card, .link-card, .overview h2, .overview p').forEach(el => {
-        el.classList.add('animate-on-scroll');
-        observer.observe(el);
+    // Observe all animatable elements
+    const animatableSelectors = [
+        '.feature-card', '.link-card', '.solution-card', '.member-card',
+        '.lesson-card', '.insight-card', '.alternative-card', '.feedback-item',
+        '.overview h2', '.overview p', '.content-section h2', '.content-section h3',
+        '.stat-card', '.quote-card', '.justification-item', '.screenshot-item',
+        '.dashboard-preview', '.hero-visual', '.feature-icon-large'
+    ];
+
+    animatableSelectors.forEach(selector => {
+        document.querySelectorAll(selector).forEach(el => {
+            el.classList.add('animate-on-scroll');
+            observer.observe(el);
+        });
     });
 
-    // Stagger animation for feature cards
-    document.querySelectorAll('.feature-card').forEach((card, index) => {
+    // Stagger animation for multiple cards in a row
+    document.querySelectorAll('.feature-grid .feature-card').forEach((card, index) => {
         card.style.animationDelay = `${index * 0.1}s`;
+    });
+
+    document.querySelectorAll('.solution-grid .solution-card').forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.2}s`;
+    });
+
+    document.querySelectorAll('.link-grid .link-card').forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.15}s`;
     });
 }
 
-// Add floating animation to specific elements
+// Add enhanced floating and interactive animations
 function initFloatingElements() {
-    const floatingElements = document.querySelectorAll('.dashboard-preview, .feature-icon');
+    const floatingElements = document.querySelectorAll('.dashboard-preview, .feature-icon-large');
     
     floatingElements.forEach((element, index) => {
         element.style.animation = `float 3s ease-in-out infinite`;
         element.style.animationDelay = `${index * 0.5}s`;
+    });
+
+    // Add pulsing animation to important buttons
+    const importantButtons = document.querySelectorAll('.btn-primary');
+    importantButtons.forEach((btn, index) => {
+        btn.addEventListener('mouseenter', () => {
+            btn.style.animation = 'pulse 2s infinite';
+        });
+        btn.addEventListener('mouseleave', () => {
+            btn.style.animation = '';
+        });
+    });
+
+    // Add shimmer effect to cards on first load
+    setTimeout(() => {
+        document.querySelectorAll('.feature-card, .solution-card, .link-card').forEach((card, index) => {
+            setTimeout(() => {
+                card.style.background = `linear-gradient(135deg, white 25%, rgba(59, 130, 246, 0.05) 50%, white 75%)`;
+                card.style.backgroundSize = '200% 100%';
+                card.style.animation = 'shimmer 2s ease-in-out';
+                
+                setTimeout(() => {
+                    card.style.background = 'white';
+                    card.style.animation = '';
+                }, 2000);
+            }, index * 200);
+        });
+    }, 1000);
+
+    // Add interactive icon bouncing
+    document.querySelectorAll('.feature-icon, .solution-icon').forEach(icon => {
+        icon.addEventListener('mouseenter', () => {
+            icon.style.animation = 'bounce 0.6s ease';
+        });
+        icon.addEventListener('animationend', () => {
+            icon.style.animation = '';
+        });
     });
 }
 
@@ -299,10 +367,20 @@ document.addEventListener('DOMContentLoaded', () => {
     initFloatingElements();
 });
 
-// Add smooth transitions for page navigation
+// Enhanced smooth transitions for page navigation
 document.addEventListener('DOMContentLoaded', () => {
     // Add transition class to body
     document.body.classList.add('transition-ready');
+    document.body.style.opacity = '0';
+    
+    // Smooth page entrance
+    setTimeout(() => {
+        document.body.style.transition = 'opacity 0.6s ease';
+        document.body.style.opacity = '1';
+        
+        // Trigger page-specific entrance animations
+        triggerPageAnimations();
+    }, 100);
     
     // Handle navigation clicks for smooth transitions
     document.querySelectorAll('.nav-link, .btn').forEach(link => {
@@ -311,16 +389,48 @@ document.addEventListener('DOMContentLoaded', () => {
             if (link.hostname === window.location.hostname && !link.href.includes('#')) {
                 e.preventDefault();
                 
+                // Smooth exit animation
+                document.body.style.transform = 'scale(0.98)';
                 document.body.style.opacity = '0';
+                
                 setTimeout(() => {
                     window.location.href = link.href;
-                }, 200);
+                }, 300);
             }
         });
     });
-    
-    // Fade in on page load
-    setTimeout(() => {
-        document.body.style.opacity = '1';
-    }, 100);
 });
+
+// Trigger page-specific animations
+function triggerPageAnimations() {
+    // Animate page header
+    const pageHeader = document.querySelector('.page-header h1');
+    if (pageHeader) {
+        pageHeader.style.animation = 'slideDown 1s ease-out 0.3s both';
+    }
+    
+    const pageSubtitle = document.querySelector('.page-header p');
+    if (pageSubtitle) {
+        pageSubtitle.style.animation = 'fadeInUp 1s ease-out 0.6s both';
+    }
+    
+    // Animate navigation items
+    document.querySelectorAll('.nav-link').forEach((link, index) => {
+        link.style.animation = `fadeInDown 0.6s ease-out ${index * 0.1}s both`;
+    });
+    
+    // Animate feature grids with stagger
+    document.querySelectorAll('.features-section .feature-card').forEach((card, index) => {
+        card.style.animation = `fadeInUp 0.8s ease-out ${0.2 + index * 0.1}s both`;
+    });
+    
+    // Animate dashboard tabs
+    document.querySelectorAll('.tab-button').forEach((tab, index) => {
+        tab.style.animation = `fadeInRight 0.6s ease-out ${index * 0.1}s both`;
+    });
+    
+    // Add loading shimmer to charts
+    document.querySelectorAll('.chart-container').forEach((chart, index) => {
+        chart.style.animation = `fadeInUp 1s ease-out ${0.5 + index * 0.2}s both`;
+    });
+}
