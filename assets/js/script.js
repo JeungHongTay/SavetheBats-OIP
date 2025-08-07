@@ -427,3 +427,281 @@ if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
         devInfo.textContent = `${window.innerWidth}x${window.innerHeight}`;
     });
 }
+
+// ===========================
+// Stage Detail Modals
+// ===========================
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all phase markers with modal data attributes
+    const phaseMarkers = document.querySelectorAll('[data-modal]');
+    const modals = document.querySelectorAll('.stage-modal');
+    const modalCloses = document.querySelectorAll('.modal-close');
+
+    // Open modal when clicking phase marker
+    phaseMarkers.forEach(marker => {
+        marker.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const modalId = this.getAttribute('data-modal');
+            const modal = document.getElementById(modalId);
+            
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                trackEvent('Design Journey', 'Modal Open', modalId);
+                
+                // Focus management for accessibility
+                const firstFocusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                if (firstFocusable) {
+                    firstFocusable.focus();
+                }
+            }
+        });
+    });
+
+    // Close modal when clicking close button
+    modalCloses.forEach(closeBtn => {
+        closeBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const modal = this.closest('.stage-modal');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+                trackEvent('Design Journey', 'Modal Close', modal.id);
+                
+                // Return focus to the trigger element
+                const triggerElement = document.querySelector(`[data-modal="${modal.id}"]`);
+                if (triggerElement) {
+                    triggerElement.focus();
+                }
+            }
+        });
+    });
+
+    // Close modal when clicking backdrop
+    modals.forEach(modal => {
+        modal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+                document.body.style.overflow = '';
+                trackEvent('Design Journey', 'Modal Close', this.id);
+                
+                // Return focus to the trigger element
+                const triggerElement = document.querySelector(`[data-modal="${this.id}"]`);
+                if (triggerElement) {
+                    triggerElement.focus();
+                }
+            }
+        });
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const activeModal = document.querySelector('.stage-modal.active');
+            if (activeModal) {
+                activeModal.classList.remove('active');
+                document.body.style.overflow = '';
+                trackEvent('Design Journey', 'Modal Close', activeModal.id);
+                
+                // Return focus to the trigger element
+                const triggerElement = document.querySelector(`[data-modal="${activeModal.id}"]`);
+                if (triggerElement) {
+                    triggerElement.focus();
+                }
+            }
+        }
+    });
+
+    // Add hover effects to phase markers
+    phaseMarkers.forEach(marker => {
+        marker.style.cursor = 'pointer';
+        marker.setAttribute('tabindex', '0');
+        
+        // Add keyboard navigation
+        marker.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
+        });
+        
+        // Add ARIA labels for accessibility
+        const modalId = marker.getAttribute('data-modal');
+        if (modalId) {
+            const stageNumber = modalId.replace('stage', '').replace('Modal', '');
+            marker.setAttribute('aria-label', `View details for Stage ${stageNumber}`);
+        }
+    });
+});
+
+// ===========================
+// Modal Content Enhancement
+// ===========================
+document.addEventListener('DOMContentLoaded', function() {
+    // Add smooth scrolling to modal content
+    const modalContents = document.querySelectorAll('.modal-content');
+    modalContents.forEach(content => {
+        content.style.scrollBehavior = 'smooth';
+    });
+    
+    // Add copy functionality to code snippets in modals (if any)
+    const codeBlocks = document.querySelectorAll('.stage-modal code');
+    codeBlocks.forEach(code => {
+        code.addEventListener('click', function() {
+            copyToClipboard(this.textContent);
+        });
+        code.style.cursor = 'pointer';
+        code.title = 'Click to copy';
+    });
+});
+
+// ===========================
+// Timeline Interaction Enhancements
+// ===========================
+document.addEventListener('DOMContentLoaded', function() {
+    const timeline = document.querySelector('.design-timeline');
+    
+    if (timeline) {
+        // Add progress indicator based on scroll position
+        const updateTimelineProgress = debounce(() => {
+            const rect = timeline.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            
+            // Calculate how much of the timeline is visible
+            let visibleRatio = 0;
+            if (rect.top < windowHeight && rect.bottom > 0) {
+                const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
+                visibleRatio = Math.max(0, Math.min(1, visibleHeight / rect.height));
+            }
+            
+            // Update any progress indicators if they exist
+            const progressIndicators = document.querySelectorAll('.timeline-progress');
+            progressIndicators.forEach(indicator => {
+                indicator.style.transform = `scaleY(${visibleRatio})`;
+            });
+        }, 10);
+        
+        window.addEventListener('scroll', updateTimelineProgress);
+        updateTimelineProgress(); // Initial call
+    }
+});
+
+// ===========================
+// Image Modal Functionality
+// ===========================
+document.addEventListener('DOMContentLoaded', function() {
+    const imageModal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalImageTitle = document.getElementById('modalImageTitle');
+    const modalImageDescription = document.getElementById('modalImageDescription');
+    const modalClose = document.querySelector('.image-modal-close');
+    const modalBackdrop = document.querySelector('.image-modal-backdrop');
+    const expandableImages = document.querySelectorAll('.expandable-image');
+
+    // Image captions for different images
+    const imageCaptions = {
+        'lofi.jpg': {
+            title: 'Initial Lo-fi Wireframe Sketches',
+            description: 'Hand-drawn wireframes showing the initial dashboard layout concepts, navigation structure, and core user interface elements. These sketches explored different approaches to data visualization and user workflow patterns.'
+        },
+        'lofi2.jpg': {
+            title: 'Detailed Mobile Interface Sketches',
+            description: 'Continuation of the design process focusing on mobile-responsive layouts, detailed interaction flows, and stakeholder-specific interface adaptations. These sketches refined the user journey and information architecture.'
+        },
+        'brainstorming.jpg': {
+            title: 'Collaborative Brainstorming Session',
+            description: 'Whiteboard session capturing initial ideas, stakeholder needs mapping, and concept exploration for the bat conservation dashboard. This session helped identify key user needs and potential solution directions.'
+        },
+        'mindmap.jpg': {
+            title: 'Mind Mapping & Brainstorming Session',
+            description: 'Comprehensive mind mapping session exploring the central concept of "Bat Conservation Awareness Tool" with branches covering data collection, public engagement, volunteer usability, and council policy influence. This visual brainstorming helped identify connections between different stakeholder needs and solution approaches.'
+        },
+        'complexity-graph.jpg': {
+            title: 'Technical Complexity vs Impact Analysis',
+            description: 'Strategic decision framework plotting solution concepts based on technical complexity versus conservation impact. This analysis helped prioritize the real-time monitoring dashboard as our primary development focus, while identifying future enhancement opportunities.'
+        },
+        'complexity-value graph.jpg': {
+            title: 'Technical Complexity vs Conservation Impact Matrix',
+            description: 'Strategic evaluation matrix plotting various solution concepts based on their technical implementation complexity versus potential conservation impact. This framework guided our decision to prioritize the real-time monitoring dashboard while mapping out future development phases for more complex features like AR navigation and AI assistants.'
+        }
+    };
+
+    function openImageModal(imageSrc, imageAlt) {
+        const filename = imageSrc.split('/').pop();
+        const caption = imageCaptions[filename];
+        
+        modalImage.src = imageSrc;
+        modalImage.alt = imageAlt;
+        
+        if (caption) {
+            modalImageTitle.textContent = caption.title;
+            modalImageDescription.textContent = caption.description;
+        } else {
+            modalImageTitle.textContent = 'Lo-fi Wireframe Sketches';
+            modalImageDescription.textContent = imageAlt;
+        }
+        
+        imageModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Focus management for accessibility
+        modalClose.focus();
+    }
+
+    function closeImageModal() {
+        imageModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Add click handlers to expandable images
+    expandableImages.forEach(imageFrame => {
+        imageFrame.addEventListener('click', function() {
+            const imageSrc = this.dataset.src;
+            const imageAlt = this.dataset.alt;
+            openImageModal(imageSrc, imageAlt);
+        });
+
+        // Add keyboard support
+        imageFrame.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const imageSrc = this.dataset.src;
+                const imageAlt = this.dataset.alt;
+                openImageModal(imageSrc, imageAlt);
+            }
+        });
+
+        // Make focusable for keyboard navigation
+        imageFrame.setAttribute('tabindex', '0');
+        imageFrame.setAttribute('role', 'button');
+        imageFrame.setAttribute('aria-label', 'Click to enlarge image');
+    });
+
+    // Close modal handlers
+    if (modalClose) {
+        modalClose.addEventListener('click', closeImageModal);
+    }
+
+    if (modalBackdrop) {
+        modalBackdrop.addEventListener('click', closeImageModal);
+    }
+
+    // Keyboard controls
+    document.addEventListener('keydown', function(e) {
+        if (imageModal.classList.contains('active')) {
+            if (e.key === 'Escape') {
+                closeImageModal();
+            }
+        }
+    });
+
+    // Prevent modal content clicks from closing the modal
+    const modalContent = document.querySelector('.image-modal-content');
+    if (modalContent) {
+        modalContent.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    }
+});
