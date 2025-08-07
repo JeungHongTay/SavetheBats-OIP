@@ -2747,6 +2747,98 @@ a:hover {
     line-height: 1.4;
 }
 
+/* Disclaimer Notice Styling */
+.disclaimer-notice {
+    background: #fef3c7;
+    border: 1px solid #f59e0b;
+    border-left: 4px solid #d97706;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+    position: relative;
+}
+
+.disclaimer-notice::before {
+    content: "⚠️";
+    position: absolute;
+    top: 1.25rem;
+    left: 1.25rem;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.disclaimer-notice h4 {
+    color: #92400e;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.disclaimer-notice p {
+    color: #78350f;
+    margin: 0;
+    line-height: 1.5;
+    padding-left: 2rem;
+}
+
+.disclaimer-notice strong {
+    color: #92400e;
+    font-weight: 600;
+}
+
+/* Responsive adjustments for disclaimer */
+@media (max-width: 768px) {
+    .disclaimer-notice {
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+    
+    .disclaimer-notice::before {
+        top: 1rem;
+        left: 1rem;
+        font-size: 1rem;
+    }
+    
+    .disclaimer-notice h4 {
+        font-size: 0.9rem;
+        margin-left: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .disclaimer-notice p {
+        font-size: 0.9rem;
+        padding-left: 1.5rem;
+        line-height: 1.4;
+    }
+}
+
+@media (max-width: 480px) {
+    .disclaimer-notice {
+        padding: 0.75rem;
+        border-left-width: 3px;
+    }
+    
+    .disclaimer-notice::before {
+        top: 0.75rem;
+        left: 0.75rem;
+        font-size: 0.9rem;
+    }
+    
+    .disclaimer-notice h4 {
+        font-size: 0.85rem;
+        margin-left: 1.25rem;
+    }
+    
+    .disclaimer-notice p {
+        font-size: 0.85rem;
+        padding-left: 1.25rem;
+    }
+}
+
 /* Phase marker cursor pointer */
 .phase-marker {
     cursor: pointer;
