@@ -1011,8 +1011,25 @@ a:hover {
 .journal-entries,
 .project-metrics,
 .lessons-section,
-.partner-interactions,
-.personal-reflections,
+.reflection-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.reflection-card {
+    border: 1px solid #ddd;
+    padding: 1.5rem;
+    border-radius: 8px;
+    background: #f9f9f9;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.reflection-icon {
+    font-size: 2rem;
+    color: #3b82f6;
+    margin-bottom: 0.5rem;
+}
 .team-insights,
 .future-implications,
 .team-intro,
@@ -3286,7 +3303,6 @@ a:hover {
     max-width: 350px;
     justify-self: center;
 }
-}
 
 .alternative-card.considered {
     border-color: #a4afc0;
@@ -3893,4 +3909,3 @@ a:hover {
 
 /* ===== End Problem-Solution Page Styles ===== */
 
-}
