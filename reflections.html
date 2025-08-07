@@ -7,6 +7,104 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .timeline-overview {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 60px 0;
+            margin: 40px 0;
+        }
+        
+        .timeline-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .timeline-item {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .timeline-week {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .timeline-content p {
+            margin: 10px 0;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .timeline-content strong {
+            color: #333;
+        }
+        
+        .key-learnings {
+            background: #f8f9fa;
+            padding: 60px 0;
+        }
+        
+        .learning-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .learning-item {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .learning-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .learning-icon {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+        }
+        
+        .learning-item h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .learning-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -37,13 +135,44 @@
     <section class="page-header">
         <div class="container">
             <h1>Project Reflections</h1>
-            <p>Honest insights into our learning journey, challenges overcome, and lessons learned for future projects</p>
+            <p>Honest insights into our 3-week learning journey, challenges overcome, and lessons learned for future projects</p>
         </div>
     </section>
 
-
+    <!-- Project Timeline Overview -->
+    <section class="timeline-overview">
+        <div class="container">
+            <h2>Our 3-Week Journey</h2>
+            <div class="timeline-summary">
+                <div class="timeline-item">
+                    <div class="timeline-week">Week 1 (July 21-25)</div>
+                    <div class="timeline-content">
+                        <p><strong>Focus:</strong> Project initiation, research, and stakeholder identification</p>
+                        <p><strong>Key Activities:</strong> Intro sessions, contract exercises, shared mental model development, prototyping</p>
+                        <p><strong>Deadline:</strong> Week 1 video submission</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-week">Week 2 (July 28-August 1)</div>
+                    <div class="timeline-content">
+                        <p><strong>Focus:</strong> Deep dive into user research and feature development</p>
+                        <p><strong>Key Activities:</strong> Opposable mind sessions, usability testing, partner meetings</p>
+                        <p><strong>Deadline:</strong> Week 2 video submission</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-week">Week 3 (August 4-8)</div>
+                    <div class="timeline-content">
+                        <p><strong>Focus:</strong> Final development, testing, and exhibition preparation</p>
+                        <p><strong>Key Activities:</strong> Ethics in product design, final prototyping, exhibition setup</p>
+                        <p><strong>Deadline:</strong> Final exhibition at GUU</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     
-        <!-- Team Growth -->
+    <!-- Team Growth -->
     <section class="team-growth">
         <div class="container">
             <h2>What We Learned About Teamwork</h2>
@@ -55,9 +184,10 @@
                     </div>
                     <h3>Communication is Everything</h3>
                     <p>
-                        Clear, frequent communication prevented misunderstandings and kept everyone aligned on goals. 
-                        Regular check-ins and transparent sharing of challenges can lead to better outcomes than trying 
-                        to solve problems in isolation.
+                        The tight 3-week timeline forced us to develop clear, frequent communication patterns. 
+                        Regular check-ins during our scheduled tutor discussions and partner meetings prevented 
+                        misunderstandings and kept everyone aligned on goals. We learned that transparent sharing 
+                        of challenges leads to better outcomes than trying to solve problems in isolation.
                     </p>
                 </div>
                 
@@ -65,11 +195,12 @@
                     <div class="insight-icon">
                         <i class="fas fa-puzzle-piece"></i>
                     </div>
-                    <h3>Collaboration is critical</h3>
+                    <h3>Collaboration is Critical</h3>
                     <p>
-                        This project Highlighted to us just how important collaboration is in a large project. Each Member
-                        had a part to play and the projects success strongly depended on the six of us working together and giving
-                        it our all
+                        This project highlighted just how important collaboration is in a large project. Each member 
+                        had a specific role to play, and the project's success strongly depended on the six of us 
+                        working together and giving it our all. The partner meetings and group sessions showed us 
+                        that diverse perspectives lead to stronger solutions.
                     </p>
                 </div>
                 
@@ -79,8 +210,9 @@
                     </div>
                     <h3>Iteration Requires Trust</h3>
                     <p>
-                        Willingness to receive feedback and iterate on ideas required building trust within the team. 
-                        Creating a safe environment for constructive criticism led to dramatically better outcomes 
+                        The prototyping and building sessions taught us that willingness to receive feedback and 
+                        iterate on ideas required building trust within the team. Creating a safe environment for 
+                        constructive criticism during our tutor discussions led to dramatically better outcomes 
                         than our initial individual efforts.
                     </p>
                 </div>
@@ -89,17 +221,19 @@
                     <div class="insight-icon">
                         <i class="fas fa-trash-alt"></i>
                     </div>
-                    <h3>It’s Okay to Let Go</h3>
+                    <h3>It's Okay to Let Go</h3>
                     <p>
-                        We learned that not every idea will fit the project's needs, no matter how much effort went into it. 
-                        Being able to let go of unsuitable concepts allowed us to focus on stronger, more viable directions. 
-                        Scrapping ideas isn’t failure — it’s part of progress.
+                        We learned that not every idea will fit the project's needs, no matter how much effort 
+                        went into it. Being able to let go of unsuitable concepts during our development phases 
+                        allowed us to focus on stronger, more viable directions. Scrapping ideas isn't failure — 
+                        it's part of progress.
                     </p>
                 </div>
             </div>
         </div>
     </section>
-        <!-- Personal Reflections -->
+
+    <!-- Personal Reflections -->
     <section class="personal-reflections">
         <div class="container">
             <h2>Team Reflection Essay</h2>
@@ -113,21 +247,26 @@
                     </div>
                     <h3>What We're Proud Of</h3>
                     <p>
-                        Looking back at this short three week project, our team is proud of the solution we managed to come up with.
-                        Tackling the complex problem statement provided is not easy. However with rapid iteration, 
-                        and a willingness to learn and adapt, we were able to navigate the challenges and arrive at a solution that we believe is both 
-                        practical and meaningful. The tight timeline forced us to stay focused and make decisions quickly, but it also 
-                        taught us the importance of prioritising and trusting each other’s strengths.
+                        Looking back at this intensive three-week project, our team is proud of the solution we managed 
+                        to develop despite the challenging timeline. Tackling the complex problem of bat conservation 
+                        and light pollution in Glasgow required rapid iteration and a willingness to learn and adapt. 
+                        We successfully navigated the challenges and arrived at a solution that we believe is both 
+                        practical and meaningful.
                     </p>
                     <p>
-                        We are also proud of how the design process was handled. Rather than stubbornly clinging to the
-                        initial idea, we showed willingness to scrap work already completed and completely shift the targeted
-                        audience for the project which showed professional maturity and a commitment to excellence.
+                        We are particularly proud of how we handled the design process throughout the three weeks. 
+                        From the initial intro sessions and contract exercises in Week 1, through the usability testing 
+                        and partner meetings in Week 2, to the final exhibition preparation in Week 3, we showed 
+                        professional maturity and a commitment to excellence. Rather than stubbornly clinging to 
+                        initial ideas, we demonstrated willingness to iterate and adapt based on feedback from 
+                        tutors and stakeholders.
                     </p>
                     <p>
-                        While the project had its fair share of challenges, we’re proud that we stayed committed to seeing it through to completion. 
-                        Even when motivation dipped or things felt uncertain, our team continued to show up, contribute, and learn from our mistakes and that attitude showed
-                        is something we are proud of.
+                        The tight timeline forced us to stay focused and make decisions quickly, but it also 
+                        taught us the importance of prioritizing and trusting each other's strengths. We're proud 
+                        that we stayed committed to seeing the project through to completion, even when motivation 
+                        dipped or things felt uncertain. Our team continued to show up, contribute, and learn from 
+                        our mistakes throughout all three weeks.
                     </p>
                 </div>
 
@@ -138,28 +277,32 @@
                     </div>
                     <h3>What We're Not Proud Of</h3>
                     <p>
-                        Our initial proposed solution had too broad a scope. We tried to incorporate both public education on the dangers
-                        of Artificial Lights at Night (ALAN) while also providing the data collection and visualization needed by our main stakeholder.
-                        In doing so, our solution suffered as a result — lacking focus, it did not effectively meet either goal.
+                        Our initial proposed solution had too broad a scope. We tried to incorporate both public 
+                        education on the dangers of Artificial Lights at Night (ALAN) while also providing the 
+                        data collection and visualization needed by our main stakeholder. In doing so, our solution 
+                        suffered as a result — lacking focus, it did not effectively meet either goal.
                     </p>
                     <p>
-                        After careful discussion, we made the difficult decision to narrow our scope, scrap the prototype we had developed,
-                        and refocus our solution toward the core need of our main stakeholder: consistent and reliable data collection.
+                        After careful discussion during our Week 2 partner meetings and tutor sessions, we made 
+                        the difficult decision to narrow our scope, scrap the prototype we had developed, and 
+                        refocus our solution toward the core need of our main stakeholder: consistent and reliable 
+                        data collection.
                     </p>
                     <p>
-                        While our project met its minimum requirements, we recognise that our team could have 
-                        grown more in terms of collaboration and communication. At times, we struggled with unclear delegation, uneven 
-                        participation, and unspoken assumptions about responsibilities. These issues led to delays, confusion, and moments of 
-                        frustration. We placed too much emphasis on "just getting things done" and not enough on building a shared understanding.
-                        This reminded us that soft skills such as empathy, active listening, and accountability are just as critical as technical ability.
+                        While our project met its minimum requirements, we recognize that our team could have 
+                        grown more in terms of collaboration and communication. At times, we struggled with 
+                        unclear delegation, uneven participation, and unspoken assumptions about responsibilities. 
+                        These issues led to delays, confusion, and moments of frustration during our development 
+                        sessions. We placed too much emphasis on "just getting things done" and not enough on 
+                        building a shared understanding.
                     </p>
                     <p>
-                        While our project managed to achieve the goal in the end on the technical side, more could be done in our collaborative side.
-                        Strengthening our team dynamics, building trust earlier, and fostering a more open and supportive environment could have 
-                        improved not just the process, but also the overall experience for everyone involved. This project reminded us that 
-                        successful outcomes aren’t just about functionality but are also about how well we work together to get there.
+                        The project reminded us that soft skills such as empathy, active listening, and accountability 
+                        are just as critical as technical ability. While our project managed to achieve the goal 
+                        in the end on the technical side, more could be done in our collaborative side. Strengthening 
+                        our team dynamics, building trust earlier, and fostering a more open and supportive environment 
+                        could have improved not just the process, but also the overall experience for everyone involved.
                     </p>
-
                 </div>
 
                 <!-- What I'd Do Differently -->
@@ -169,20 +312,69 @@
                     </div>
                     <h3>What We Would Do Differently</h3>
                     <p>
-                        If we could restart this project, the first change would be to define a clearer and more focused scope from the beginning. 
-                        Our initial ambition to tackle both public education and stakeholder data needs stretched us too thin. With better 
-                        prioritisation early on, we could have avoided wasting time on features that were ultimately scrapped.  
+                        If we could restart this project, the first change would be to define a clearer and more 
+                        focused scope from the beginning. Our initial ambition to tackle both public education 
+                        and stakeholder data needs stretched us too thin. With better prioritization early on, 
+                        we could have avoided wasting time on features that were ultimately scrapped during our 
+                        Week 2 pivot.
                     </p>
                     <p>
-                        We also would have established stronger communication habits within the team. Unclear delegation and unspoken assumptions 
-                        often led to misunderstandings and uneven workloads. Setting clear expectations, defining roles early, and having 
-                        structured check-ins would have improved collaboration and team morale.
+                        We also would have established stronger communication habits within the team from Week 1. 
+                        Unclear delegation and unspoken assumptions often led to misunderstandings and uneven 
+                        workloads during our development sessions. Setting clear expectations, defining roles early, 
+                        and having more structured check-ins would have improved collaboration and team morale 
+                        throughout the three weeks.
+                    </p>
+                    <p>
+                        Additionally, we would have taken better advantage of the scheduled tutor discussions 
+                        and feedback sessions. While we attended these sessions, we could have been more proactive 
+                        in seeking guidance and feedback earlier in the process, rather than waiting until we 
+                        encountered problems.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Key Learnings -->
+    <section class="key-learnings">
+        <div class="container">
+            <h2>Key Learnings from Our 3-Week Journey</h2>
+            <div class="learning-grid">
+                <div class="learning-item">
+                    <div class="learning-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Time Management</h3>
+                    <p>The tight timeline taught us the importance of effective time management and prioritization. We learned to focus on what truly matters and let go of perfectionism.</p>
+                </div>
+                
+                <div class="learning-item">
+                    <div class="learning-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Stakeholder Engagement</h3>
+                    <p>Regular partner meetings and stakeholder interviews showed us the value of understanding user needs early and often in the design process.</p>
+                </div>
+                
+                <div class="learning-item">
+                    <div class="learning-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Iterative Design</h3>
+                    <p>The prototyping sessions and usability testing taught us that good design comes from iteration and user feedback, not from perfect first attempts.</p>
+                </div>
+                
+                <div class="learning-item">
+                    <div class="learning-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Team Dynamics</h3>
+                    <p>Working in a team of six over three weeks revealed the importance of clear communication, trust, and shared goals in project success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">

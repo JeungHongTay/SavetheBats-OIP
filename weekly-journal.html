@@ -7,6 +7,183 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .week-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .week-btn {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .week-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        .week-btn.active {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .daily-entries {
+            display: none;
+            margin-top: 30px;
+            width: 100%;
+            max-width: 100%;
+        }
+        
+        .daily-entries.active {
+            display: block;
+        }
+        
+        .day-entry {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .day-entry:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .day-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .day-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .day-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .day-content {
+            color: #666;
+            line-height: 1.6;
+            width: 100%;
+        }
+        
+        .day-content h4 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .day-content ul {
+            margin-left: 20px;
+        }
+        
+        .day-content li {
+            margin-bottom: 5px;
+        }
+        
+        /* Override container constraints for journal entries */
+        .journal-entries .container {
+            max-width: 100%;
+            width: 100%;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        
+        /* Ensure full width for the journal entries section */
+        .journal-entries {
+            width: 100%;
+            max-width: 100%;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        
+        /* Project Metrics Full Width */
+        .project-metrics {
+            width: 100%;
+            max-width: 100%;
+            padding: 60px 20px;
+            box-sizing: border-box;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .project-metrics h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #333;
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .metric-item {
+            background: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .metric-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .metric-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .metric-label {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 500;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -55,146 +232,224 @@
         </div>
     </section>
 
+    <!-- Weekly Buttons -->
+    <section class="week-buttons-section">
+        <div class="container">
+            <div class="week-buttons">
+                <button class="week-btn" onclick="showWeek(1)">Week 1</button>
+                <button class="week-btn" onclick="showWeek(2)">Week 2</button>
+                <button class="week-btn" onclick="showWeek(3)">Week 3</button>
+            </div>
+        </div>
+    </section>
+
     <!-- Weekly Entries -->
     <section class="journal-entries">
-        <div class="container">
-            
-            <!-- Week 1 -->
-            <div class="journal-entry">
-                <div class="entry-header">
-                    <div class="entry-week">Week 1</div>
-                    <div class="entry-date">January 8-14, 2025</div>
-                    <div class="entry-phase">Research & Discovery</div>
+        <!-- Week 1 Daily Entries -->
+        <div id="week1-entries" class="daily-entries">
+            <div class="day-entry">
+                <div class="day-header">
+                    <div class="day-number">1</div>
+                    <div class="day-title">Day 1 - Public Holiday</div>
                 </div>
-                <div class="entry-content">
-                    <h3>Project Initiation & Problem Understanding</h3>
-                    
-                    <div class="progress-summary">
-                        <h4>Key Progress:</h4>
-                        <ul>
-                            <li>Conducted initial research on bat conservation and light pollution in Glasgow</li>
-                            <li>Identified GlasGLOW festival as a key case study for temporary lighting impacts</li>
-                            <li>Established team roles and communication protocols</li>
-                            <li>Created project charter and initial timeline</li>
-                        </ul>
-                    </div>
-
-                    <div class="decisions-made">
-                        <h4>Key Decisions:</h4>
-                        <ul>
-                            <li><strong>Focus Area:</strong> Chose Glasgow parks as primary monitoring locations</li>
-                            <li><strong>Target Users:</strong> Defined primary stakeholders as city council and conservation groups</li>
-                            <li><strong>Technology Approach:</strong> Decided on web-based dashboard for accessibility</li>
-                        </ul>
-                    </div>
-
-                    <div class="roadblocks">
-                        <h4>Challenges & Solutions:</h4>
-                        <div class="challenge-item">
-                            <strong>Challenge:</strong> Limited access to existing bat monitoring data
-                            <br><strong>Solution:</strong> Reached out to local wildlife organizations and research institutions
-                        </div>
-                        <div class="challenge-item">
-                            <strong>Challenge:</strong> Team members in different time zones
-                            <br><strong>Solution:</strong> Established regular meeting schedule accommodating all members
-                        </div>
-                    </div>
+                <div class="day-content">
+                    <p>
+                        Today was a public holiday, so no project work was conducted. The team members took this opportunity to rest and prepare for the intensive week ahead. This break allowed everyone to mentally prepare for the project challenges and research that would begin the following day.
+                    </p>
                 </div>
             </div>
 
-            <!-- Week 2 -->
-            <div class="journal-entry">
-                <div class="entry-header">
-                    <div class="entry-week">Week 2</div>
-                    <div class="entry-date">January 15-21, 2025</div>
-                    <div class="entry-phase">Stakeholder Research</div>
+            <div class="day-entry">
+                <div class="day-header">
+                    <div class="day-number">2</div>
+                    <div class="day-title">Day 2 - Project Introduction & Stakeholder Meeting</div>
                 </div>
-                <div class="entry-content">
-                    <h3>Stakeholder Interviews & Requirements Gathering</h3>
-                    
-                    <div class="progress-summary">
-                        <h4>Key Progress:</h4>
-                        <ul>
-                            <li>Conducted interviews with 3 Glasgow City Council environmental officers</li>
-                            <li>Spoke with 2 local bat conservation experts</li>
-                            <li>Analyzed existing lighting policies and bat protection guidelines</li>
-                            <li>Created initial user personas and journey maps</li>
-                        </ul>
-                    </div>
-
-                    <div class="decisions-made">
-                        <h4>Key Decisions:</h4>
-                        <ul>
-                            <li><strong>Data Sources:</strong> Prioritized real-time sensor data over periodic surveys</li>
-                            <li><strong>User Interface:</strong> Decided on dashboard approach over mobile app</li>
-                            <li><strong>Community Feature:</strong> Added adopt-a-bat program based on stakeholder feedback</li>
-                        </ul>
-                    </div>
-
-                    <div class="roadblocks">
-                        <h4>Challenges & Solutions:</h4>
-                        <div class="challenge-item">
-                            <strong>Challenge:</strong> Stakeholders had conflicting priorities for features
-                            <br><strong>Solution:</strong> Created feature priority matrix based on impact vs. effort
-                        </div>
-                    </div>
+                <div class="day-content">
+                    <p>
+                        We started the day with an introduction to the project specifications and learned how to ask effective questions to stakeholders. The session taught us the importance of framing questions correctly to gather the most valuable information. We met our team for the first time and prepared a comprehensive list of questions based on the project PDF. Initially, we thought our task was to reduce or control lights to save the bats, but this assumption would be challenged later. The highlight of the day was meeting our stakeholder, where we conducted an in-depth interview to understand the problem better. We learned about the bats' environment, their critical life stages, and what the stakeholder truly wanted to achieve. This meeting was eye-opening as we discovered they didn't want us to "save the bats" but rather to help collect information about lights and bats to see how they affect each other, which would help them stop the town council and collect evidence to protect these legally protected species.
+                    </p>
                 </div>
             </div>
 
-            <!-- Week 3 -->
-            <div class="journal-entry">
-                <div class="entry-header">
-                    <div class="entry-week">Week 3</div>
-                    <div class="entry-date">January 22-28, 2025</div>
-                    <div class="entry-phase">Ideation & Concept Development</div>
+            <div class="day-entry">
+                <div class="day-header">
+                    <div class="day-number">3</div>
+                    <div class="day-title">Day 3 - Mental Models & Understanding</div>
                 </div>
-                <div class="entry-content">
-                    <h3>Brainstorming & Initial Concept Design</h3>
-                    
-                    <div class="progress-summary">
-                        <h4>Key Progress:</h4>
-                        <ul>
-                            <li>Improve on poster design</li>
-                            <li>Work on team website</li>
-                        </ul>
-                    </div>
-
-                    <div class="decisions-made">
-                        <h4>Key Decisions:</h4>
-                        <ul>
-                            <li><strong>Visual Direction:</strong> Poster design improve to make it more engaging and informative</li>
-                            <li><strong>Technical Stack:</strong> Created team website using HTML/CSS </li>
-                        </ul>
-                    </div>
-
-                    <div class="roadblocks">
-                        <h4>Challenges & Solutions:</h4>
-                        <div class="challenge-item">
-                            <strong>Challenge:</strong> Too many feature ideas without clear prioritization
-                            <br><strong>Solution:</strong> Used MoSCoW method to categorize features into Must/Should/Could/Won't have
-                        </div>
-                    </div>
+                <div class="day-content">
+                    <p>
+                        Today we learned about different types of mental models and how they help people perceive things better. We explored how each model is different and how it affects understanding. Through this session, we identified which mental model suited our project best, which gave us a clearer roadmap for moving forward. The mental models session helped us understand how to structure our thinking and approach the problem systematically. We gained insights into how different perspectives can shape problem-solving approaches and how to choose the most effective model for our specific challenge.
+                    </p>
                 </div>
             </div>
+
+            <div class="day-entry">
+                <div class="day-header">
+                    <div class="day-number">4</div>
+                    <div class="day-title">Day 4 - Processing Insights & Brainstorming</div>
+                </div>
+                <div class="day-content">
+                    <p>
+                        We spent today processing the stakeholder meeting from Day 2 and preparing for our Week 1 pitch. We conducted additional background research on bats to become more knowledgeable about the issue at hand. As a team, we gathered to brainstorm ideas and narrow down solutions that would best suit the stakeholder's needs and address the core issue. The main challenge we faced was synthesizing the large amount of new information we had gathered and aligning our team's understanding of the project's true objectives. Through open team discussions and collaborative brainstorming, we were able to clarify that the project wasn't just about saving bats, but about collecting and analyzing data to support conservation efforts and legal protection. This understanding significantly evolved our approach from simply wanting to reduce lights to creating a comprehensive data collection and analysis system.
+                    </p>
+                </div>
+            </div>
+
+            <div class="day-entry">
+                <div class="day-header">
+                    <div class="day-number">5</div>
+                    <div class="day-title">Day 5 - Finalizing Ideas & Low-Fi Prototyping</div>
+                </div>
+                <div class="day-content">
+                    <p>
+                        Today we finalized our main project idea based on all the team discussions and stakeholder feedback we had gathered throughout the week. We learned about different types of low-fidelity prototyping techniques and began creating prototypes to visualize our solution. The prototyping session was particularly valuable as it helped us translate our abstract ideas into tangible representations that we could present to stakeholders. We started working on our PowerPoint presentation for the Week 1 pitch and practiced presenting our ideas as a team. The main challenge we encountered was translating our complex ideas into a simple, understandable prototype within the short timeframe. However, by leveraging our team's creativity and using rapid prototyping techniques, we were able to quickly iterate on our ideas and develop a clear vision for our solution. By the end of the day, we had gained confidence in our chosen direction and recognized the value of prototyping for communicating ideas clearly to stakeholders.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Week 2 Daily Entries -->
+        <div id="week2-entries" class="daily-entries">
+            <div class="day-entry">
+                <div class="day-header">
+                    <div class="day-number">1</div>
+                    <div class="day-title">Day 1 - Feedback & Reflection Focus</div>
+                </div>
+                <div class="day-content">
+                    <p>
+                        We received the results for our Week 1 pitch and were not satisfied with the score, which prompted us to carefully review the feedback provided by the marker. To gain a clearer understanding of the marking criteria and expectations, we consulted our TA and clarified any doubts regarding the assessment. The feedback made it clear that the marker was looking for a strong reflection on our process, whereas our pitch had focused more on the project solution itself. This realization influenced our approach for the coming week, as we decided to place greater emphasis on documenting and reflecting on our journey, not just the end product, to ensure we addressed all aspects of the assessment in our Week 2 pitch.
+                    </p>
+                </div>
+            </div>
+
+            <div class="day-entry">
+                <div class="day-header">
+                    <div class="day-number">2</div>
+                    <div class="day-title">Day 2 - Opposable Mind & Solution Growth</div>
+                </div>
+                <div class="day-content">
+                    <p>
+                        Today's "Opposable Mind" session taught us the value of generating multiple ideas and critically comparing them, not just to choose one, but to analyze the strengths of each and synthesize a third, improved solution. This exercise encouraged us to move beyond simply sticking with our initial idea or switching to a new one; instead, we learned to evolve our solution by integrating the best elements from different approaches. This mindset shift was especially valuable for our team, as it fostered a more creative and open problem-solving process. We became more comfortable with constructive critique and iterative development, which helped us refine our project direction and ensured that our solution was robust and well-considered.
+                    </p>
+                </div>
+            </div>
+
+            <div class="day-entry">
+                <div class="day-header">
+                    <div class="day-number">3</div>
+                    <div class="day-title">Day 3 - Refocusing on Stakeholder Needs</div>
+                </div>
+                <div class="day-content">
+                    <p>
+                        During our review of the low-fidelity prototype, we realized that our design was trying to cater to both the public and the stakeholder, which made our solution too broad and unfocused. This lack of clarity was creating more problems than it solved, so we decided to prioritize the stakeholder's needs and adapt our prototype accordingly. By narrowing our focus, we were able to expand on the stakeholder-specific solution and make it more effective and foolproof. This decision helped us align our work more closely with the project's core objectives and allowed us to develop a solution that would truly address the stakeholder's requirements.
+                    </p>
+                </div>
+            </div>
+
+            <div class="day-entry">
+                <div class="day-header">
+                    <div class="day-number">4</div>
+                    <div class="day-title">Day 4 - High-Fi Prototype Development</div>
+                </div>
+                <div class="day-content">
+                    <p>
+                        Our project partner was on holiday today, so we didn't have the opportunity to meet with her. Instead, we focused on developing our high-fi prototype, which was a crucial step in bringing our solution to life. We concentrated on creating a detailed, functional prototype that would effectively demonstrate our solution's capabilities and user interface. The high-fi prototype development involved translating our conceptual ideas into a tangible, interactive design that stakeholders could experience firsthand. We sent an email to the stakeholder to ensure our solution continued to meet her needs, although we did not receive a reply. The decisions we made yesterday gave us a clearer vision for our solution, and we were able to visualize and articulate our approach more effectively through the high-fi prototype. Our work today was focused on aligning our prototype with the goal of monitoring bats and collecting valuable information to support conservation efforts.
+                    </p>
+                </div>
+            </div>
+
+            <div class="day-entry">
+                <div class="day-header">
+                    <div class="day-number">5</div>
+                    <div class="day-title">Day 5 - High-Fi Prototype Completion & Process Reflection</div>
+                </div>
+                <div class="day-content">
+                    <p>
+                        We completed our high-fi prototype today, finalizing the interactive elements and ensuring all functionality was working properly. The usability testing was a key focus, emphasizing the importance of each team member taking responsibility for testing different aspects of the project. We simulated user interactions and gathered feedback to identify areas for improvement, ensuring our solution was user-friendly and met the intended objectives. As we continued preparing for the Week 2 pitch, we made a conscious effort to highlight our reflection on the process, rather than just the solution itself. This shift in focus allowed us to better communicate our learning journey, the challenges we faced, and the rationale behind our decisions, ultimately strengthening the narrative and impact of our Week 2 video submission. The high-fi prototype served as a powerful tool for demonstrating our solution's potential and helped us communicate our ideas more effectively.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Week 3 Daily Entries -->
+        <div id="week3-entries" class="daily-entries">
+            <div class="day-entry">
+                <div class="day-header">
+                    <div class="day-number">1</div>
+                    <div class="day-title">Day 1 - Week 2 Results & Poster Development</div>
+                </div>
+                <div class="day-content">
+                    <p>
+                        We received the results for our Week 2 pitch video and saw improvement, though we knew we could still do better. The feedback indicated that we didn't have enough reflection, even though we had included reflection content in our slides. This highlighted the importance of making our reflection more explicit and prominent in our presentations. We concentrated on developing the poster that we had started working on over the weekend. The day was spent formatting the poster, deciding what content to include, and selecting appropriate images from our hi-fi prototype to enhance the visual appeal. Our main priority was to complete this poster before moving on to website development, as we wanted to ensure our visual presentation was polished and comprehensive.
+                    </p>
+                </div>
+            </div>
+
+            <div class="day-entry">
+                <div class="day-header">
+                    <div class="day-number">2</div>
+                    <div class="day-title">Day 2 - Poster Redesign & Visual Enhancement</div>
+                </div>
+                <div class="day-content">
+                    <p>
+                        After comparing our poster with others, we realized our design was lacking visual appeal, so we made the bold decision to scrap our previous layout completely and create a new one from scratch. We worked on the redesign throughout the entire day, focusing on making it visually appealing while ensuring readers could easily understand our solution. We carefully selected images that contributed meaningfully to the understanding of our project and made sure each visual element served a purpose. We consulted our TA for feedback, and he suggested adding a section for key takeaways and impacts, along with some notes on the visual aspects. This guidance was invaluable and helped our poster stand out significantly from the rest. The new design better communicated our solution's value and impact.
+                    </p>
+                </div>
+            </div>
+
+            <div class="day-entry">
+                <div class="day-header">
+                    <div class="day-number">3</div>
+                    <div class="day-title">Day 3 - Website Development & Structure</div>
+                </div>
+                <div class="day-content">
+                    <p>
+                        Today we shifted our focus to website development, starting with laying out the skeleton structure according to the project rubrics. We carefully planned the navigation and content organization to ensure all required sections were properly represented. The website development process involved creating a user-friendly interface that would effectively showcase our project journey, methodology, and final solution. We worked on establishing a clear information architecture that would guide visitors through our design process, from initial problem understanding to final implementation. The technical challenges of website development required us to balance functionality with aesthetics, ensuring the site was both informative and visually engaging. This phase of development helped us consolidate all our project work into a cohesive digital presentation.
+                    </p>
+                </div>
+            </div>
+
+            <div class="day-entry">
+                <div class="day-header">
+                    <div class="day-number">4</div>
+                    <div class="day-title">Day 4 - Final Preparations & Exhibition Setup</div>
+                </div>
+                <div class="day-content">
+                    <p>
+                        We finalized our website development and collected our completed poster, marking the completion of our main deliverables. The day was dedicated to preparing for tomorrow's final presentation and exhibition. We rehearsed our presentation multiple times, ensuring each team member was comfortable with their speaking parts and the overall flow of our presentation. We also prepared our exhibition space, organizing our materials and ensuring everything was properly displayed. The anticipation of presenting our work to stakeholders and peers created a mix of excitement and nervousness within the team. We double-checked all our materials, from the poster to the website functionality, making sure everything was polished and ready for the final showcase. This preparation phase was crucial for building our confidence and ensuring we could effectively communicate our project's value and impact.
+                    </p>
+                </div>
+            </div>
+
+            <div class="day-entry">
+                <div class="day-header">
+                    <div class="day-number">5</div>
+                    <div class="day-title">Day 5 - Final Exhibition & Project Completion</div>
+                </div>
+                <div class="day-content">
+                    <p>
+                        Today was the culmination of our three-week journey as we presented our final solution at the exhibition at GUU. 
+                    </p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Project Metrics -->
     <section class="project-metrics">
-        <div class="container">
-            <h2>Project Metrics</h2>
-            <div class="metrics-grid">
-                <div class="metric-item">
-                    <div class="metric-number">3</div>
-                    <div class="metric-label">Weeks of Development</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-number">2</div>
-                    <div class="metric-label">Stakeholder Interviews</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-number">1</div>
-                    <div class="metric-label">Major Design Iterations</div>
-                </div>
+        <h2>Project Metrics</h2>
+        <div class="metrics-grid">
+            <div class="metric-item">
+                <div class="metric-number">3</div>
+                <div class="metric-label">Weeks of Development</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-number">2</div>
+                <div class="metric-label">Stakeholder Interviews</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-number">1</div>
+                <div class="metric-label">Major Design Iterations</div>
             </div>
         </div>
     </section>
@@ -272,5 +527,35 @@
     </footer>
 
     <script src="assets/js/script.js"></script>
+    <script>
+        function showWeek(weekNumber) {
+            // Hide all week entries
+            const allEntries = document.querySelectorAll('.daily-entries');
+            allEntries.forEach(entry => {
+                entry.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            const allButtons = document.querySelectorAll('.week-btn');
+            allButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected week entries
+            const selectedWeek = document.getElementById(`week${weekNumber}-entries`);
+            if (selectedWeek) {
+                selectedWeek.classList.add('active');
+            }
+            
+            // Add active class to clicked button
+            const clickedButton = event.target;
+            clickedButton.classList.add('active');
+        }
+        
+        // Show Week 1 by default
+        window.onload = function() {
+            showWeek(1);
+        };
+    </script>
 </body>
 </html>
