@@ -8,6 +8,91 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .map-container {
+            width: 100%;
+            max-width: 100%;
+            margin: 40px 0;
+        }
+
+        .map-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .map-wrapper {
+            width: 100%;
+            margin: 30px 0;
+            position: relative;
+            padding-bottom: 80%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        #interactive-map {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .map-legend {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .map-legend h4 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 1.2rem;
+        }
+
+        .legend-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legend-marker {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .legend-item span:last-child {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .map-info {
+                grid-template-columns: 1fr;
+            }
+
+            .legend-items {
+                grid-template-columns: 1fr;
+            }
+
+            .map-wrapper {
+                padding-bottom: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -68,7 +153,6 @@
                             src="https://embed.figma.com/proto/9d4cEFc9WNDelZKLWAx9NI/Prototype-wireframe?node-id=126-911&p=f&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&embed-host=share" 
                             allowfullscreen>
                         </iframe>
-                        
                     </div>
 
                     <div class="prototype-details">
@@ -98,6 +182,40 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Interactive Map Section -->
+            <section class="map-container" id="map-section">
+                <div class="container">
+                    <h2 style="text-align: center;">Bat Activity & Light Sensor Map</h2>
+                    <p style="text-align: center;">Live overview of monitored areas across Glasgow</p>
+
+                    <div class="map-wrapper">
+                        <div id="interactive-map"></div>
+                    </div>
+
+                    <div class="map-legend">
+                        <h4>Legend</h4>
+                        <div class="legend-items">
+                            <div class="legend-item">
+                                <span class="legend-marker" style="background-color:#4CAF50;"></span>
+                                <span>High Bat Activity</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-marker" style="background-color:#FF9800;"></span>
+                                <span>Medium Bat Activity</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-marker" style="background-color:#F44336;"></span>
+                                <span>Low Bat Activity</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-marker" style="background-color:#2196F3;"></span>
+                                <span>Active Light Sensor</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </main>
 
@@ -143,5 +261,57 @@
 
     <script src="assets/js/script.js"></script>
     <script src="assets/js/dashboard.js"></script>
+    <script>
+        function initInteractiveMap() {
+            var glasgow = {lat: 55.8642, lng: -4.2518};
+            var map = new google.maps.Map(document.getElementById('interactive-map'), {
+                zoom: 12,
+                center: glasgow,
+                styles: [
+                    {
+                        "featureType": "poi.park",
+                        "elementType": "geometry",
+                        "stylers": [{"color": "#e8f5e8"}]
+                    }
+                ]
+            });
+
+            var locations = [
+                {lat: 55.8530, lng: -4.2376, title: "Glasgow Green", activity: "High", type: "bat", image: "assets/images/gg.png"},
+                {lat: 55.8704, lng: -4.2826, title: "Kelvingrove Park", activity: "Medium", type: "bat", image: "assets/images/klg_park.png"},
+                {lat: 55.8240, lng: -4.3165, title: "Pollok Country Park", activity: "High", type: "bat", image: "assets/images/pcp.png"},
+                {lat: 55.8609, lng: -4.2514, title: "City Centre", activity: "Low", type: "bat", image: "assets/images/cc.png"},
+                {lat: 55.8770, lng: -4.2920, title: "West End", activity: "Active", type: "sensor", image: "assets/images/westend.png"}
+            ];
+
+            locations.forEach(function(location) {
+                var marker = new google.maps.Marker({
+                    position: {lat: location.lat, lng: location.lng},
+                    map: map,
+                    title: location.title,
+                    icon: {
+                        url: location.type === 'bat' ? 
+                            'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="' + (location.activity === 'High' ? '#4CAF50' : location.activity === 'Medium' ? '#FF9800' : '#F44336') + '"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>') :
+                            'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2196F3"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>'),
+                        scaledSize: new google.maps.Size(30, 30)
+                    }
+                });
+
+                var infoWindow = new google.maps.InfoWindow({
+                    content: '<div style="padding:10px;max-width:250px;text-align:center;">'
+                        + '<h3>' + location.title + '</h3>'
+                        + '<img src="' + location.image + '" alt="' + location.title + '" style="width:100%;max-width:200px;border-radius:8px;margin:10px 0;">'
+                        + '<p>Bat Activity: ' + location.activity + '</p>'
+                        + '<p>Last Updated: ' + new Date().toLocaleDateString() + '</p>'
+                        + '</div>'
+                });
+
+                marker.addListener('click', function() {
+                    infoWindow.open(map, marker);
+                });
+            });
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfkvXmSFPkCekUwued_SlSSmBFP2ft9kU&callback=initInteractiveMap"></script>
 </body>
-</html> 
+</html>
