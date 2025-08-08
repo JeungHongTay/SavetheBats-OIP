@@ -2,6 +2,9 @@
 
 A website for the EcoNoc Glasgow project - addressing light pollution effects on bat populations in Glasgow parks.
 
+## Project Website hosted on GitHub Pages
+    
+
 ## Project Overview
 
 This is an Overseas Immersion Programme (OIP) developed by Team 25(3B) from SIT-UoG Computing Science. The project focuses on the impact of light pollution on bat populations in Glasgow parks.
