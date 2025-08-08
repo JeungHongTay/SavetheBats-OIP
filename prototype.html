@@ -280,39 +280,149 @@
                 </div>
             </div>
 
-            <!-- Interactive Map Section -->
+            <!-- Static Map Section -->
+            <h4>Interactive Map</h4>
             <section class="map-container" id="map-section">
-                <div class="container">
-                    <h2 style="text-align: center;">Bat Activity & Light Sensor Map</h2>
-                    <p style="text-align: center;">Live overview of monitored areas across Glasgow</p>
+                <img src="assets/images/glasgow_map.png" alt="Glasgow Map" class="map-image">
 
-                    <div class="map-wrapper">
-                        <div id="interactive-map"></div>
-                    </div>
+                <!-- Markers -->
+                <div class="marker" style="top: 75%; left: 55%;" data-info="gg"></div> <!-- Marker 1 -->
+                <div class="marker" style="top: 55%; left: 40%;" data-info="kelvingrove"></div> <!-- Marker 2 -->
+                <div class="marker" style="top: 40%; left: 30%;" data-info="pollok"></div> <!-- Marker 3 -->
+                <div class="marker" style="top: 20%; left: 35%;" data-info="citycentre"></div> <!-- Marker 4 -->
+                <div class="marker" style="top: 50%; left: 80%;" data-info="westend"></div> <!-- Marker 5 -->
 
-                    <div class="map-legend">
-                        <h4>Legend</h4>
-                        <div class="legend-items">
-                            <div class="legend-item">
-                                <span class="legend-marker" style="background-color:#4CAF50;"></span>
-                                <span>High Bat Activity</span>
-                            </div>
-                            <div class="legend-item">
-                                <span class="legend-marker" style="background-color:#FF9800;"></span>
-                                <span>Medium Bat Activity</span>
-                            </div>
-                            <div class="legend-item">
-                                <span class="legend-marker" style="background-color:#F44336;"></span>
-                                <span>Low Bat Activity</span>
-                            </div>
-                            <div class="legend-item">
-                                <span class="legend-marker" style="background-color:#2196F3;"></span>
-                                <span>Active Light Sensor</span>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Info Box -->
+                <div class="info-box" id="infoBox">
+                  <img src="" alt="Location Image" id="infoImg">
+                  <h3 id="infoTitle">Title</h3>
+                  <p id="infoActivity">Activity</p>
+                  <p id="infoDate">Last Updated</p>
                 </div>
             </section>
+
+            <style>
+            .map-container {
+              position: relative;
+              width: 100%;
+              max-width: 1400px;
+              margin: 40px auto;
+              border: 2px solid #ccc;
+              border-radius: 12px;
+              overflow: hidden;
+              background: #fff;
+            }
+            .map-image {
+              display: block;
+              width: 100%;
+              height: auto;
+            }
+            .marker {
+              position: absolute;
+              width: 28px;
+              height: 28px;
+              background: url('assets/images/marker.png') no-repeat center center;
+              background-size: contain;
+              cursor: pointer;
+            }
+            .info-box {
+              position: absolute;
+              background: white;
+              padding: 10px;
+              border-radius: 8px;
+              box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+              width: 160px;
+              display: none;
+              z-index: 10;
+            }
+            .info-box img {
+              width: 100%;
+              border-radius: 6px;
+              margin-bottom: 6px;
+            }
+            .info-box h3 {
+              margin: 0 0 4px;
+              font-size: 1rem;
+            }
+            .info-box p {
+              margin: 0;
+              font-size: 0.8rem;
+              color: #555;
+            }
+            </style>
+
+            <script>
+            const markers = document.querySelectorAll('.marker');
+            const infoBox = document.getElementById('infoBox');
+            const infoImg = document.getElementById('infoImg');
+            const infoTitle = document.getElementById('infoTitle');
+            const infoActivity = document.getElementById('infoActivity');
+            const infoDate = document.getElementById('infoDate');
+
+            const infoData = {
+              gg: {
+                title: "Hotspot 1",
+                activity: "Bat Activity: High",
+                date: "Last Updated: 08/07/2025",
+                image: "assets/images/hotspot2.png"
+              },
+              kelvingrove: {
+                title: "Hotspot 2",
+                activity: "Bat Activity: Medium",
+                date: "Last Updated: 08/06/2025",
+                image: "assets/images/klg_park.png"
+              },
+              pollok: {
+                title: "Hotspot 3",
+                activity: "Bat Activity: High",
+                date: "Last Updated: 08/04/2025",
+                image: "assets/images/pcp.png"
+              },
+              citycentre: {
+                title: "Hotspot 4",
+                activity: "Bat Activity: Low",
+                date: "Last Updated: 08/01/2025",
+                image: "assets/images/hotspot3.png"
+              },
+              westend: {
+                title: "Hotspot 5",
+                activity: "Light Sensor Active",
+                date: "Last Updated: 08/05/2025",
+                image: "assets/images/hotspot4.png"
+              }
+            };
+
+            markers.forEach(marker => {
+              marker.addEventListener('click', (e) => {
+                const key = marker.dataset.info;
+                const data = infoData[key];
+
+                infoImg.src = data.image;
+                infoTitle.textContent = data.title;
+                infoActivity.textContent = data.activity;
+                infoDate.textContent = data.date;
+
+                // Position the info box
+                if (key === 'gg') {
+                  // For Hotspot 1, show above the marker
+                  infoBox.style.top = (marker.offsetTop - infoBox.offsetHeight - 10) + 'px';
+                  infoBox.style.left = (marker.offsetLeft - 10) + 'px';
+                } else {
+                  // For others, show to the right
+                  infoBox.style.top = (marker.offsetTop - 10) + 'px';
+                  infoBox.style.left = (marker.offsetLeft + 35) + 'px';
+                }
+                infoBox.style.display = 'block';
+              });
+            });
+
+            // Hide info box on outside click
+            document.addEventListener('click', (e) => {
+              if (!e.target.classList.contains('marker') && !infoBox.contains(e.target)) {
+                infoBox.style.display = 'none';
+              }
+            });
+            </script>
         </div>
     </main>
 
@@ -359,57 +469,5 @@
     <script src="assets/js/script.js"></script>
     <script src="assets/js/dashboard.js"></script>
     <script src="assets/js/smooth-slideshow.js"></script>
-    <script>
-        function initInteractiveMap() {
-            var glasgow = {lat: 55.8609, lng: -4.2514};
-            var map = new google.maps.Map(document.getElementById('interactive-map'), {
-                zoom: 12,
-                center: glasgow,
-                styles: [
-                    {
-                        "featureType": "poi.park",
-                        "elementType": "geometry",
-                        "stylers": [{"color": "#e8f5e8"}]
-                    }
-                ]
-            });
-
-            var locations = [
-                {lat: 55.8530, lng: -4.2376, title: "Glasgow Green", activity: "High", type: "bat", image: "assets/images/gg.png"},
-                {lat: 55.8704, lng: -4.2826, title: "Kelvingrove Park", activity: "Medium", type: "bat", image: "assets/images/klg_park.png"},
-                {lat: 55.8240, lng: -4.3165, title: "Pollok Country Park", activity: "High", type: "bat", image: "assets/images/pcp.png"},
-                {lat: 55.8609, lng: -4.2514, title: "City Centre", activity: "Low", type: "bat", image: "assets/images/cc.png"},
-                {lat: 55.8770, lng: -4.2920, title: "West End", activity: "Active", type: "sensor", image: "assets/images/westend.png"}
-            ];
-
-            locations.forEach(function(location) {
-                var marker = new google.maps.Marker({
-                    position: {lat: location.lat, lng: location.lng},
-                    map: map,
-                    title: location.title,
-                    icon: {
-                        url: location.type === 'bat' ? 
-                            'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="' + (location.activity === 'High' ? '#4CAF50' : location.activity === 'Medium' ? '#FF9800' : '#F44336') + '"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>') :
-                            'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2196F3"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>'),
-                        scaledSize: new google.maps.Size(30, 30)
-                    }
-                });
-
-                var infoWindow = new google.maps.InfoWindow({
-                    content: '<div style="padding:10px;max-width:250px;text-align:center;">'
-                        + '<h3>' + location.title + '</h3>'
-                        + '<img src="' + location.image + '" alt="' + location.title + '" style="width:100%;max-width:200px;border-radius:8px;margin:10px 0;">'
-                        + '<p>Bat Activity: ' + location.activity + '</p>'
-                        + '<p>Last Updated: ' + new Date().toLocaleDateString() + '</p>'
-                        + '</div>'
-                });
-
-                marker.addListener('click', function() {
-                    infoWindow.open(map, marker);
-                });
-            });
-        }
-    </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfkvXmSFPkCekUwued_SlSSmBFP2ft9kU&callback=initInteractiveMap"></script>
 </body>
 </html>
