@@ -104,6 +104,142 @@
             color: #666;
             line-height: 1.6;
         }
+        
+        .stakeholder-reflection {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+        
+        .stakeholder-reflection h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+        
+        .reflection-intro {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .reflection-content {
+            display: grid;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .reflection-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .reflection-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+        }
+        
+        .reflection-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .reflection-section h3 {
+            color: #333;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding-left: 20px;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .reflection-section h3::before {
+            content: counter(reflection-counter);
+            counter-increment: reflection-counter;
+            position: absolute;
+            left: -15px;
+            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+        }
+        
+        .reflection-content {
+            counter-reset: reflection-counter;
+        }
+        
+        .reflection-section p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 16px;
+            padding-left: 20px;
+            text-align: justify;
+        }
+        
+        .reflection-section p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .reflection-section p strong {
+            color: #333;
+        }
+        
+        @media (max-width: 768px) {
+            .stakeholder-reflection {
+                padding: 60px 0;
+            }
+            
+            .stakeholder-reflection h2 {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+            
+            .reflection-section {
+                padding: 30px 20px;
+                margin: 0 15px;
+            }
+            
+            .reflection-section h3 {
+                font-size: 1.2rem;
+                padding-left: 15px;
+            }
+            
+            .reflection-section h3::before {
+                left: -10px;
+                width: 28px;
+                height: 28px;
+                font-size: 0.8rem;
+            }
+            
+            .reflection-section p {
+                padding-left: 15px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -115,7 +251,7 @@
                 <span>EcoNoc Glasgow</span>
             </div>
             <div class="nav-menu" id="navMenu">
-                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html" class="nav-link">Overview</a>
                 <a href="problem-solution.html" class="nav-link">Problem & Solution</a>
                 <a href="design-journey.html" class="nav-link">Design Journey</a>
                 <a href="prototype.html" class="nav-link">Dashboard</a>
@@ -376,6 +512,115 @@
         </div>
     </section>
 
+    <!-- Stakeholder Reflection -->
+    <section class="stakeholder-reflection">
+        <div class="container">
+            <h2>Stakeholder Reflection</h2>
+            <p class="reflection-intro">
+                Using the 5R reflective framework (Reporting, Responding, Relating, Reasoning, Reconstructing) to deeply examine our stakeholder engagement experiences and extract meaningful lessons for future practice.
+            </p>
+            
+            <div class="reflection-content">
+                <div class="reflection-section">
+                    <h3>Understanding the Stakeholders' Reality</h3>
+                    <p>
+                        Initially, we thought we could come up with the craziest and coolest ideas for our bat conservation project. Our team was buzzing with excitement about developing cutting-edge tech solutions - we were picturing AI-powered species identification systems, real-time mobile apps with citizen science gamification features, interactive public displays with augmented reality components, and these comprehensive IoT sensor networks spanning multiple Glasgow parks. We were basically approaching this as our chance for a technology showcase, eager to demonstrate our technical prowess and create something that would totally impress our peers and professors. In our minds, these were proof-of-concept ideas that didn't necessarily need to be super feasible right now - we thought the value was in exploring ambitious possibilities and pushing boundaries, even if the solutions weren't immediately practical or implementable.
+                    </p>
+                    <p>
+                        However, our early conversations with the Botanics volunteers quickly revealed that there were way more constraints with this problem than we'd expected. The reality check came in waves: first, we learned about these strict legal protections around bat habitats that severely limit where and how monitoring can even occur. Then came all the practical stuff - volunteers have limited time for training on complex systems, equipment needs to survive Scottish weather year-round, and any data collection has to integrate with existing Glasgow City Council reporting workflows that favor simple, consistent formats over our fancy visualizations.
+                    </p>
+                    <p>
+                        Most fundamentally, we discovered that our stakeholders weren't dealing with a lack of ideas at all - they were dealing with a lack of consistent, defensible evidence. The GlasGLOW light festival creates this intense community debate every single year, but without baseline data on light levels and bat activity, conservationists can only make these general arguments. What they actually needed wasn't innovation for its own sake, but tools that could generate "evidence people can act on" - simple, reliable measurements that could inform policy discussions without requiring specialized interpretation.
+                    </p>
+                    <p>
+                        This realization was honestly, pretty crushing to our team's enthusiasm at first. We felt disappointed that our ambitious technical visions weren't viable, and some of us even questioned whether we were just "dumbing down" our solution. There was this huge mindset shift we had to make - going from thinking about cool proof-of-concept demonstrations that could showcase interesting possibilities, to actually thinking about immediately deployable, sustainable solutions that volunteers could realistically use and maintain. The gap between these two approaches was way larger than we'd anticipated, and it really forced us to reconsider what "good design" actually means in real-world contexts.
+                    </p>
+                    <p>
+                        What we came to understand through deeper conversations was that our stakeholders weren't anti-technology at all - they were just very pro-effectiveness. They'd seen so many well-intentioned student projects produce these impressive demos that just... couldn't be sustained beyond the academic timeline. Their focus on "defensible signals over time" really taught us that sustainability and reliability matter infinitely more than innovation for innovation's sake. This connected directly to our academic learning about user-centered design - you know, those previous courses where we'd discovered significant gaps between what we thought would be exciting and what users actually needed. But this project? It made that learning visceral and personal in a way classroom exercises never could. The difference between proof-of-concept thinking (exploring what's possible) and solution thinking (addressing what's needed) became crystal clear through these stakeholder interactions.
+                    </p>
+                    <p>
+                        The depth of this learning completely reshaped how we approach problem-solving now. We learned to ask totally different questions: instead of "What cool features could we add?" we started asking "What's the minimum viable evidence set needed for advocacy?" Instead of "How can we showcase our technical skills?" we asked "What's the simplest system that volunteers can reliably maintain?" This shift from solution-first to constraint-first thinking felt really counterintuitive at first, but it proved incredibly powerful. Moving forward, our future projects will definitely begin with deep constraint understanding rather than blue-sky ideation - we'll prioritize comprehensive stakeholder reality mapping before any solution ideation even begins.
+                    </p>
+                </div>
+
+                <div class="reflection-section">
+                    <h3>Communication</h3>
+                    <p>
+                        At the start of the OIP, our communication with stakeholders felt limited because we did not have a clear understanding of what was actually expected from us. We approached the first interactions with only a general sense of the problem, so the questions we asked were broad and sometimes not directly useful. Looking back, it was not that we did not want to engage, but rather that we lacked the knowledge and context needed to ask the right questions. Over time, as we learned more about the project and began to understand the real challenges faced by the stakeholders, we realised how much difference well-thought-out, targeted questions could make. This shift did not happen immediately. It developed as we recognised that careful questioning could lead to more valuable insights and help us make better design decisions. We became more deliberate in preparing for stakeholder conversations by identifying exactly what we needed to know before each meeting and following up on answers that were unclear or opened new lines of thought. This approach helped us uncover information that we might have otherwise missed, and it made our discussions more collaborative rather than one-sided. By the later stages of the OIP, our team was more confident in these exchanges and more efficient in evaluating ideas, deciding what was practical, and adapting our direction in response to feedback. The change in how we communicated and the depth of understanding we gained reinforced the importance of curiosity, preparation, and continuous reflection when working with stakeholders.
+                    </p>
+                    <p>
+                        The emotional dynamics of these interactions taught us some pretty profound lessons about professional communication. We felt so vulnerable admitting our knowledge gaps about bat ecology, Glasgow council processes, and community engagement strategies, but we found this honesty actually strengthened rather than weakened our relationships with stakeholders. They began sharing way more detailed information about past challenges, internal debates within their organizations, and personal frustrations with policy processes - information that proved absolutely crucial for designing appropriate solutions but which they never would've shared with overconfident students trying to impress them.
+                    </p>
+                    <p>
+                        We also learned how much communication style actually affects problem definition itself. When we approached conversations as opportunities to gather requirements for our predefined solution categories, we heard completely different information than when we approached them as opportunities to understand the stakeholders' world more deeply. The latter approach revealed these unexpected insights: that volunteer motivation depends heavily on seeing concrete impact from their efforts, that council staff need simple narratives they can defend in public meetings, and that community members often support conservation goals but need reassurance that restrictions won't eliminate beloved cultural events like GlasGLOW.
+                    </p>
+                    <p>
+                        This experience connects directly to communication theory we've studied around active listening and empathy, but also to conflict resolution techniques from our coursework where honest, vulnerable communication improved outcomes even in adversarial situations. We realized that how we communicate is integral to the solution itself - technical solutions deployed without trust and understanding fail regardless of their sophistication. The quality of our relationships with stakeholders directly determined the quality of information we received, which directly determined the appropriateness of our final solution.
+                    </p>
+                    <p>
+                        Looking ahead, we'll definitely establish communication protocols that prioritize curiosity and systematic questioning from project start. This means preparing specific question categories before stakeholder meetings, creating structured ways to reflect back what we're hearing, and building in regular self-reflection sessions to identify what we still don't know. We've learned that sustainable solutions require sustainable relationships, and sustainable relationships are built through genuinely wanting to understand rather than wanting to impress.
+                    </p>
+                </div>
+
+                <div class="reflection-section">
+                    <h3>Expectation Management & Alignment</h3>
+                    <p>
+                        Managing expectations proved to be one of our most challenging yet educational aspects of stakeholder engagement. Initially, we approached the project with typical student enthusiasm - eager to solve everything and create comprehensive solutions that would address multiple stakeholder needs simultaneously. We assumed that more features and broader scope would demonstrate greater value and competence. Our early project proposals reflected this thinking: we wanted to create public education tools, volunteer management systems, data visualization dashboards, and policy recommendation engines all within a single integrated platform.
+                    </p>
+                    <p>
+                        The reality check came gradually through multiple stakeholder conversations. What initially felt like stakeholders "limiting our creativity" we eventually recognized as stakeholders sharing hard-won wisdom about project sustainability and organizational capacity. They weren't asking us to think smaller because they lacked vision - they were asking us to think more realistically because they understood the long-term maintenance and adoption challenges that student teams typically overlook.
+                    </p>
+                    <p>
+                        We felt frustrated initially by the need to scale back our ambitious vision, but relief came when clear boundaries finally emerged from our collaborative discussions. The breakthrough moment occurred when stakeholders helped us distinguish between what was desirable in an ideal world (comprehensive community engagement, real-time monitoring across all Glasgow parks, sophisticated predictive modeling) and what was viable given current resources and constraints (a few reliable indicators, simple visual summaries, lightweight workflows that volunteers could maintain with minimal training).
+                    </p>
+                    <p>
+                        The process of prioritization felt constraining at first but ultimately became liberating and focus-enhancing. Instead of trying to be everything to everyone, we could concentrate on doing a few things exceptionally well. We learned to frame constraints not as limitations but as clarity - they helped us understand exactly what success would look like and how to measure it. Setting these boundaries early in subsequent conversations prevented over-promising and kept project momentum moving forward rather than getting bogged down in scope creep.
+                    </p>
+                    <p>
+                        Practically, effective expectation management meant establishing specific, measurable agreements rather than vague aspirational goals. Instead of promising "better bat conservation advocacy," we committed to delivering a minimum evidence set consisting of regular light level measurements and bat activity signals around three specific sensitive zones. Instead of "improving volunteer engagement," we focused on creating workflows that required no more than 2 hours of monthly time commitment and could be learned in a single training session. Instead of "informing policy decisions," we committed to generating simple monthly reports in formats that council staff could absorb quickly and defend in public meetings.
+                    </p>
+                    <p>
+                        We also learned that alignment isn't a one-time meeting where expectations are set and then followed blindly - it's an ongoing rhythm of check-ins, trade-offs, and re-prioritization as realities change and new constraints emerge. Our stakeholders' experiences with previous student projects had taught them that requirements often shift as technical teams encounter implementation challenges, so they valued our willingness to communicate about trade-offs proactively rather than delivering diluted versions of original promises without explanation.
+                    </p>
+                    <p>
+                        This connects to project management principles about scope definition and stakeholder expectation management that we've studied, relating specifically to agile methodologies that emphasize iterative alignment and regular check-ins over comprehensive upfront planning. But experiencing this in practice revealed nuances that textbooks don't capture - the emotional labor involved in disappointing stakeholders with necessary scope reductions, the skill required to frame constraints positively rather than as failures, and the relationship-building that makes honest trade-off conversations possible.
+                    </p>
+                    <p>
+                        The meta-learning here extends beyond this specific project: we realized that managing expectations is fundamentally about building shared mental models of what's possible, desirable, and sustainable. When stakeholders and project teams have misaligned mental models, even successful technical delivery can feel like failure if it doesn't match unstated expectations. Conversely, when mental models are aligned through explicit conversation and regular calibration, even simplified solutions can feel like meaningful progress toward shared goals.
+                    </p>
+                    <p>
+                        Moving forward, future projects will include formal alignment protocols with regular review cycles, establishing clear criteria for project success that all parties understand and agree upon, and building in explicit mechanisms for adjusting scope based on changing realities rather than treating initial requirements as immutable commitments. We've learned that sustainable project relationships require treating expectation management as an ongoing collaborative process rather than a one-time contracting exercise.
+                    </p>
+                </div>
+
+                <div class="reflection-section">
+                    <h3>Mutual Learning & Impact Beyond the Deliverable</h3>
+                    <p>
+                        One of the most surprising aspects of our stakeholder engagement was discovering how much we learned from each other - it wasn't just us gathering requirements and stakeholders providing information, but a genuine exchange of perspectives that benefited everyone involved. Our technical background in data visualization and system design helped stakeholders see new possibilities for presenting their conservation arguments, while their deep ecological knowledge and community experience grounded our solutions in practical reality.
+                    </p>
+                    <p>
+                        The Botanics volunteers taught us about the intricate relationships between light spectrum, seasonal patterns, and different bat species' feeding behaviors - knowledge that completely reshaped our approach to sensor placement and data collection timing. In return, our questions about data standards and visualization helped them think more strategically about what evidence formats would be most persuasive in council meetings and community forums. These exchanges often went far beyond our project scope but enriched everyone's understanding of the broader conservation challenges.
+                    </p>
+                    <p>
+                        We discovered that stakeholders were genuinely interested in our learning process, not just our final deliverables. They shared stories about previous student collaborations - both successful partnerships that led to lasting impact and disappointing experiences where promising prototypes were abandoned after academic deadlines passed. These conversations helped us understand that our stakeholders were investing in us as future professionals, not just as temporary project contributors.
+                    </p>
+                    <p>
+                        The reciprocal nature of learning became most apparent when stakeholders began adapting our structured problem-analysis approaches for their own advocacy work. They started using our questions about measurable outcomes and success criteria in their own planning meetings, and several mentioned that our focus on constraints and sustainability had influenced how they evaluated other potential partnerships. This felt incredibly validating - proof that our engagement had created value beyond just completing our academic requirements.
+                    </p>
+                    <p>
+                        This connects to service-learning pedagogical approaches we've encountered in other coursework, where community partnerships are designed to benefit all participants rather than treating community members merely as learning opportunities for students. But experiencing this reciprocal relationship firsthand revealed how much more meaningful and sustainable these partnerships become when all parties recognize their mutual capacity to teach and learn from each other.
+                    </p>
+                    <p>
+                        The emotional impact of recognizing our contributions to stakeholders' ongoing work has fundamentally changed how we think about project success. Technical competence and meeting deliverable requirements remain important, but they're insufficient if the project doesn't create lasting value for community partners. We've learned that sustainable impact requires building stakeholder capacity, not just delivering solutions - empowering people to maintain, adapt, and extend our work rather than creating dependency on external technical support.
+                    </p>
+                    <p>
+                        Moving forward, we'll approach stakeholder relationships as collaborative partnerships from the start, explicitly discussing mutual learning goals alongside project deliverables, and building in mechanisms for ongoing knowledge exchange that extend beyond formal project timelines. We've learned that the most meaningful projects create value for all participants and generate capabilities that outlast the original collaboration period.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -387,7 +632,7 @@
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html">Overview</a></li>
                         <li><a href="problem-solution.html">Problem & Solution</a></li>
                         <li><a href="design-journey.html">Design Journey</a></li>
                         <li><a href="about-team.html">Meet the Team</a></li>
