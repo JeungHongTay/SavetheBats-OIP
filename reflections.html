@@ -247,6 +247,107 @@
                 padding-left: 15px;
             }
         }
+        
+        .prototype-reflection {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+        
+        .prototype-reflection h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+        
+        .prototype-journey-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .prototype-journey-content .reflection-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .prototype-journey-content .reflection-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .prototype-journey-content .reflection-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .prototype-journey-content .reflection-icon {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        
+        .prototype-journey-content .reflection-card h3 {
+            color: #333;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .prototype-journey-content .reflection-card p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 16px;
+            text-align: justify;
+        }
+        
+        .prototype-journey-content .reflection-card p:last-child {
+            margin-bottom: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .prototype-reflection {
+                padding: 60px 0;
+            }
+            
+            .prototype-reflection h2 {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+            
+            .prototype-journey-content {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                margin: 0 15px;
+            }
+            
+            .prototype-journey-content .reflection-card {
+                padding: 25px 20px;
+            }
+            
+            .prototype-journey-content .reflection-card h3 {
+                font-size: 1.2rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -622,6 +723,98 @@
                     </p>
                     <p>
                         Moving forward, we'll approach stakeholder relationships as collaborative partnerships from the start, explicitly discussing mutual learning goals alongside project deliverables, and building in mechanisms for ongoing knowledge exchange that extend beyond formal project timelines. We've learned that the most meaningful projects create value for all participants and generate capabilities that outlast the original collaboration period.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prototype Reflection -->
+    <section class="prototype-reflection">
+        <div class="container">
+            <h2>Prototyping Journey Reflection</h2>
+            <p class="reflection-intro">
+                Reflecting on our evolution from initial brainstorming sketches to a fully functional dashboard - examining what we learned about iterative design, stakeholder feedback integration, and the balance between ambition and practicality.
+            </p>
+            
+            <div class="prototype-journey-content">
+                <div class="reflection-card">
+                    <div class="reflection-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>From Broad Ideas to Focused Solutions</h3>
+                    <p>
+                        Our prototyping journey began with ambitious, wide-reaching concepts during our mind mapping sessions. We initially envisioned comprehensive solutions that would serve everyone - from AI-powered species identification to community engagement platforms with adopt-a-bat features. Looking back, this breadth of vision was both a strength and a weakness.
+                    </p>
+                    <p>
+                        The mind mapping exercise taught us the value of divergent thinking, but our strategic complexity analysis became the turning point. Plotting features by development complexity versus user engagement helped us realize that trying to build everything would result in building nothing well. This framework forced us to make difficult choices about what to prioritize within our 15-day timeline.
+                    </p>
+                    <p>
+                        The decision to focus on a professional dashboard rather than a community app felt limiting at first, but it ultimately enabled us to create something genuinely useful. We learned that constraint breeds creativity - having clear boundaries actually made our design decisions easier and our final solution stronger.
+                    </p>
+                </div>
+
+                <div class="reflection-card">
+                    <div class="reflection-icon">
+                        <i class="fas fa-pencil-alt"></i>
+                    </div>
+                    <h3>The Power of Lo-fi Validation</h3>
+                    <p>
+                        Our hand-drawn wireframes and iPad sketches proved invaluable for testing concepts before investing in detailed design work. The lo-fi prototyping sessions revealed fundamental usability issues that would have been expensive to fix later - problems with information hierarchy, navigation flow, and data presentation that we could iterate on quickly with pen and paper.
+                    </p>
+                    <p>
+                        While we only had two stakeholder meetings throughout the project, we made the most of each interaction. When we sent our lo-fi prototypes for feedback during the second phase, Chrissy was on holiday which made it harder to get direct input. However, this challenge actually led to a valuable exercise - we went back and carefully re-reviewed all the detailed notes we had taken during our first stakeholder meeting, looking for insights we might have initially missed.
+                    </p>
+                    <p>
+                        This closer examination of our original meeting notes proved incredibly valuable. We discovered specific requirements and preferences that we hadn't fully incorporated into our initial designs. By taking a more systematic approach to analyzing the stakeholder feedback we already had, we were able to improve our prototypes significantly even without additional meetings. This taught us the importance of thorough documentation and the value of revisiting early insights with fresh perspective as our understanding of the problem evolves.
+                    </p>
+                </div>
+
+                <div class="reflection-card">
+                    <div class="reflection-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>Navigating Opposing Ideas Through Integration</h3>
+                    <p>
+                        The opposable mind framework became crucial when we faced the tension between community engagement and professional focus. Rather than choosing one approach over another, we learned to synthesize opposing ideas into a more robust solution. Our final dashboard prioritizes professional workflows while incorporating educational elements that could scale to community features later.
+                    </p>
+                    <p>
+                        This integrative thinking process taught us that seemingly contradictory requirements often point toward deeper design opportunities. The tension between simplicity (for volunteers) and sophistication (for researchers) led us to progressive disclosure patterns where the interface remains clean but detailed data is available on demand.
+                    </p>
+                    <p>
+                        We realized that good design often involves holding multiple perspectives simultaneously rather than forcing binary choices. This mindset helped us create a solution that serves immediate needs while maintaining flexibility for future expansion.
+                    </p>
+                </div>
+
+                <div class="reflection-card">
+                    <div class="reflection-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>From Figma to Functional Reality</h3>
+                    <p>
+                        The transition from hi-fi Figma prototypes to a working web application revealed the difference between designing interactions and implementing them. Many design decisions that seemed straightforward in Figma required technical compromises or creative solutions when translated to code.
+                    </p>
+                    <p>
+                        Building the functional dashboard taught us to think more systematically about component reuse, data flow, and user states. The interactive charts and real-time data visualizations pushed us to consider performance, accessibility, and responsive design in ways our static prototypes never could.
+                    </p>
+                    <p>
+                        Perhaps most importantly, having a working prototype enabled genuine user testing with our botanics stakeholders. Their interactions with the actual interface revealed usability insights that no amount of design thinking could have predicted. We learned that prototypes aren't just communication tools but are also learning instruments.
+                    </p>
+                </div>
+
+                <div class="reflection-card">
+                    <div class="reflection-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>What Made Our Prototyping Successful</h3>
+                    <p>
+                        Looking back, several factors contributed to our prototyping success: starting with broad exploration before narrowing focus, validating concepts early with low-cost methods, maintaining close stakeholder collaboration throughout, and treating each prototype as a learning opportunity rather than a final answer.
+                    </p>
+                    <p>
+                        The combination of strategic analysis, rapid iteration, and continuous feedback created a design process that was both systematic and adaptive. We learned to balance planning with improvisation, vision with pragmatism, and ambition with constraint.
+                    </p>
+                    <p>
+                        Most importantly, our prototyping journey taught us that good design is less about having perfect initial ideas and more about having effective processes for refining and improving those ideas through iteration and collaboration.
                     </p>
                 </div>
             </div>
