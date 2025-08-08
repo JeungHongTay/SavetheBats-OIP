@@ -4,7 +4,7 @@ A website for the EcoNoc Glasgow project - addressing light pollution effects on
 
 ## Project Overview
 
-This is an Organisational Innovation Project (OIP) developed by students from the Singapore Institute of Technology. The project focuses on the impact of light pollution on bat populations in Glasgow parks.
+This is an Overseas Immersion Programme (OIP) developed by Team 25(3B) from SIT-UoG Computing Science. The project focuses on the impact of light pollution on bat populations in Glasgow parks.
 
 ## Features
 
